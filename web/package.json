@@ -1,0 +1,29 @@
+{
+  "name": "halite-web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DrPandemic/halite-backend.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DrPandemic/halite-backend/issues"
+  },
+  "homepage": "https://github.com/DrPandemic/halite-backend#readme",
+  "dependencies": {
+    "koa": "^2.3.0",
+    "koa-favicon": "^2.0.0",
+    "koa-logger": "^3.0.1",
+    "koa-mount": "^3.0.0",
+    "koa-multer": "^1.0.1",
+    "koa-route": "^3.2.0",
+    "koa-session": "^5.4.0",
+    "koa-static": "^4.0.1"
+  }
+}
