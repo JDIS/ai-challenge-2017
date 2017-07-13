@@ -1,5 +1,8 @@
 # Web
 
+## Env
+Copy the `env.example` file to `.env` and replace its content.
+
 ## Dependencies
 Based on [a boilerplate](https://github.com/llambda/koa-boiler/blob/master/app.js).
 
