@@ -16,7 +16,6 @@ branch_labels = None
 depends_on = None
 
 teams = sa.table('teams',
-                 sa.column('id', sa.Integer),
                  sa.column('name', sa.String),
                  sa.column('members', sa.String),
                  sa.column('bot', sa.Boolean))
@@ -28,9 +27,9 @@ def upgrade():
                   )
     op.bulk_insert(teams,
                    [
-                       {'id': 1, 'name': 'ninja-bot', 'members': '', 'bot': True},
-                       {'id': 2, 'name': 'warrior-bot', 'members': '', 'bot': True},
-                       {'id': 3, 'name': 'wizard-bot', 'members': '', 'bot': True}
+                       {'name': 'ninja-bot', 'members': '', 'bot': True},
+                       {'name': 'warrior-bot', 'members': '', 'bot': True},
+                       {'name': 'wizard-bot', 'members': '', 'bot': True}
                    ]
                    )
 
