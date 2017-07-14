@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "./node_modules/.bin/nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -28,11 +28,13 @@
     "koa-mount": "^3.0.0",
     "koa-multer": "^1.0.1",
     "koa-route": "^3.2.0",
+    "koa-router": "^7.2.1",
     "koa-session": "^5.4.0",
     "koa-static": "^4.0.1",
     "zlib": "^1.0.5"
   },
   "devDependencies": {
-    "eslint": "^4.2.0"
+    "eslint": "^4.2.0",
+    "nodemon": "^1.11.0"
   }
 }

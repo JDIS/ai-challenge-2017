@@ -14,9 +14,9 @@ app.keys = [process.env.SECRET];
 app.use(require('koa-session')(app));
 app.use(require('koa-bodyparser')());
 
-app.use(ctx => {
-  ctx.body = '420';
-});
+const controllers = require('./src/controller');
+app.use(controllers.routes())
+   .use(controllers.allowedMethods());
 
 const port = process.env.PORT || 8080;
 app.listen(port);
