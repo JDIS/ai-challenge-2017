@@ -19,6 +19,7 @@
   "homepage": "https://github.com/DrPandemic/halite-backend#readme",
   "dependencies": {
     "dotenv": "^4.0.0",
+    "handlebars": "^4.0.10",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
     "koa-compress": "^2.0.0",
@@ -31,6 +32,7 @@
     "koa-router": "^7.2.1",
     "koa-session": "^5.4.0",
     "koa-static": "^4.0.1",
+    "koa-views": "^6.0.2",
     "zlib": "^1.0.5"
   },
   "devDependencies": {

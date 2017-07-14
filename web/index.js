@@ -14,7 +14,12 @@ app.keys = [process.env.SECRET];
 app.use(require('koa-session')(app));
 app.use(require('koa-bodyparser')());
 
-const controllers = require('./src/controller');
+app.use(require('koa-views')(__dirname + '/src/views', {
+  extension: 'hbs',
+  map: { hbs: 'handlebars' }
+}));
+
+const controllers = require('./src/controllers');
 app.use(controllers.routes())
    .use(controllers.allowedMethods());
 

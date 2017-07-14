@@ -4,6 +4,7 @@ const Router = require('koa-router');
 
 const router = module.exports = new Router();
 
-router.get('/', function (ctx, next) {
-  ctx.body = '42';
+router.get('/', async function (ctx) {
+  /* ctx.state = { yup: 1337 };*/
+  await ctx.render('register');
 });
