@@ -1,0 +1,36 @@
+<div>
+  <h2>Changer le round</h2>
+  <form action="/admin/round" method="post">
+    <label>
+      Round
+      <input type="number" id="round">
+    </label>
+    <input type="submit" value="Update">
+  </form>
+</div>
+
+<div>
+  <h2>Lancer un match compétitif</h2>
+  <form action="/admin/match" method="post">
+    <table>
+      <tr>
+        <th>Équipe</th>
+        <th>Mise à jour</th>
+        <th>Match?</th>
+        <th>Membres</th>
+      </tr>
+      <tr>
+        <td>team2</td>
+        <td>Hier</td>
+        <th><input type="checkbox" name="team" value="2"></th>
+        <th>Moi, toi</th>
+      </tr>
+      <tr>
+        <td>team3</td>
+        <td>Hier</td>
+        <th><input type="checkbox" name="team" value="3"></th>
+        <th>Harry Potter</th>
+      </tr>
+    </table>
+  </form>
+</div>

@@ -10,3 +10,5 @@ const login = require('./login.js');
 router.use('/login', login.routes(), login.allowedMethods());
 const dashboard = require('./dashboard.js');
 router.use('/dashboard', dashboard.routes(), dashboard.allowedMethods());
+const admin = require('./admin.js');
+router.use('/admin', admin.routes(), admin.allowedMethods());
