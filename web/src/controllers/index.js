@@ -8,3 +8,5 @@ const register = require('./register.js');
 router.use('/register', register.routes(), register.allowedMethods());
 const login = require('./login.js');
 router.use('/login', login.routes(), login.allowedMethods());
+const dashboard = require('./dashboard.js');
+router.use('/dashboard', dashboard.routes(), dashboard.allowedMethods());

@@ -1,0 +1,51 @@
+<div style="background-color: #ccc">
+  Vous avez reçu une invitation par "team3". Voulez-vous l'accepter?
+
+  <form action="/dashboard/invite" method="get">
+    <button type="submit" value="true" name="accept">Accepter</button>
+    <button type="submit" value="false" name="accept">Refuser</button>
+  </form>
+</div>
+
+<div>
+  <h2>Téléverser votre IA</h2>
+  <form action="/dashboard/upload" method="post" enctype="multipart/form-data">
+    <label>
+      .zip
+      <input type="file" id="file">
+    </label>
+  </form>
+</div>
+
+<div>
+  <h2>Lancer une requête de partie</h2>
+  <form action="/dashboard/game" method="post">
+    <input type="checkbox" name="team" value="1">bot1<br>
+    <input type="checkbox" name="team" value="1">bot2<br>
+    <input type="checkbox" name="team" value="1">bot3<br>
+    <input type="checkbox" name="team" value="1">team2<br>
+    <input type="checkbox" name="team" value="1">team3<br>
+    <input type="submit" value="Demander">
+  </form>
+</div>
+
+<div>
+  <h2>Historique</h2>
+  <table>
+    <tr>
+      <th>Équipe</th>
+      <th>Victoire?</th>
+      <th>Date</th>
+    </tr>
+    <tr>
+      <td>team2</td>
+      <td>Nope</td>
+      <td>Hier</td>
+    </tr>
+    <tr>
+      <td>team2</td>
+      <td>Nope</td>
+      <td>Encore hier</td>
+    </tr>
+  </table>
+</div>

@@ -13,6 +13,7 @@ app.use(require('koa-compress')({
 app.keys = [process.env.SECRET];
 app.use(require('koa-session')(app));
 app.use(require('koa-bodyparser')());
+require('koa-validate')(app);
 
 app.use(require('koa-views')(__dirname + '/src/views', {
   extension: 'hbs',
