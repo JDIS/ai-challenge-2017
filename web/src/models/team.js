@@ -8,8 +8,9 @@ const saltRounds = module.exports.saltRounds = 10;
 
 async function insertTeam(db, name, members, password) {
   try {
+    const hash = await bcrypt.hash(password, saltRounds);
     const nbAdmin = (await db.one(query.countAdmin)).count;
-    await db.none(query.insertTeam, [name, members, nbAdmin === '0', password]);
+    await db.none(query.insertTeam, [name, members, nbAdmin === '0', hash]);
   } catch (error) {
     console.error(error);
     throw new Error('Was not able to insert');
@@ -23,11 +24,14 @@ async function createTeam(db, form) {
     throw new Error('Missing fields');
   }
 
-  if (name.length < 3 || password.length < 5) {
-    throw new Error("Fields length");
+  if (name.length < 3) {
+    throw new Error('Name must be equal or longer than 3 characters');
   }
 
-  const hashedPassword = await bcrypt.hash(password, saltRounds);
+  if (password.length < 5) {
+    throw new Error('Password must be equal or longer than 5 characters');
+  }
+
   await insertTeam(db, name, members, password);
 }
 module.exports.createTeam = createTeam;

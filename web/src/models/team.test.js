@@ -6,7 +6,7 @@ const {
 } = require('./team.js');
 
 test('createTeam missing fields', async () => {
-  expect(createTeam({}, {})).rejects.toEqual(new Error('Missing field(s)'));
+  expect(createTeam({}, {})).rejects.toEqual(new Error('Missing fields'));
   expect(createTeam({}, {
     members: 'b',
     password: 'c',
@@ -35,12 +35,12 @@ test('createTeam field size', async () => {
     name: 'a',
     members: 'b',
     password: 'ccccc',
-  })).rejects.toEqual(new Error('Fields length'));
+  })).rejects.toEqual(new Error('Name must be equal or longer than 3 characters'));
   expect(createTeam({}, {
     name: 'aaa',
     members: 'b',
     password: 'c',
-  })).rejects.toEqual(new Error('Fields length'));
+  })).rejects.toEqual(new Error('Password must be equal or longer than 5 characters'));
 });
 
 test('createTeam create admin', async () => {
@@ -73,4 +73,6 @@ test("createTeam don't create admin", async () => {
   });
 
   expect(successDB.none.mock.calls[0][1][2]).toEqual(false);
+  const hash = successDB.none.mock.calls[0][1][3];
+  expect(await bcrypt.compare('cccccc', hash)).toBeTruthy();
 });
