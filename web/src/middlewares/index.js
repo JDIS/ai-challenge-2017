@@ -32,3 +32,18 @@ async function manageConnection(ctx, next) {
   await next();
 }
 module.exports.manageConnection = manageConnection;
+
+async function manage401 (ctx, next) {
+  try {
+    await next();
+  } catch(error) {
+    if (error.status !== 401) {
+      throw error;
+    }
+
+    ctx.session = null;
+    ctx.redirect('/login');
+  }
+}
+
+module.exports.manage401 = manage401;

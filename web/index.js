@@ -19,6 +19,7 @@ app.use(require('koa-views')(__dirname + '/src/views', {
   extension: 'hbs',
   map: { hbs: 'handlebars' }
 }));
+app.use(require('./src/middlewares').manage401);
 app.use(require('./src/middlewares').addHelpers);
 app.use(require('./src/middlewares').manageConnection);
 
