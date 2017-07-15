@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const {
   createTeam,
   saltRounds,
+  setSession,
 } = require('./team.js');
 
 test('createTeam missing fields', async () => {
@@ -47,7 +48,7 @@ test('createTeam create admin', async () => {
   const successDB = {};
   successDB.one = jest.fn();
   successDB.one.mockReturnValueOnce(Promise.resolve({ count: '0' }));
-  successDB.one.mockReturnValueOnce(Promise.resolve({ id: 1 }));
+  successDB.one.mockReturnValueOnce(Promise.resolve({ id: 1, admin: true }));
 
   await createTeam(successDB, {
     name: 'aaaaaa',
@@ -62,7 +63,7 @@ test("createTeam don't create admin", async () => {
   const successDB = {};
   successDB.one = jest.fn();
   successDB.one.mockReturnValueOnce(Promise.resolve({ count: '1' }));
-  successDB.one.mockReturnValueOnce(Promise.resolve({ id: 1 }));
+  successDB.one.mockReturnValueOnce(Promise.resolve({ id: 1, admin: false }));
 
   await createTeam(successDB, {
     name: 'aaaaaa',
@@ -90,11 +91,11 @@ test("createTeam rejects when there's a DB error", async () => {
   await expect(result).rejects.toEqual(new Error('Was not able to insert. yup'));
 });
 
-test('createTeam resolves to the created ID', async () => {
+test('createTeam resolves to the created team', async () => {
   const successDB = {};
   successDB.one = jest.fn();
   successDB.one.mockReturnValueOnce(Promise.resolve({ count: '1' }));
-  successDB.one.mockReturnValueOnce(Promise.resolve({ id: '42' }));
+  successDB.one.mockReturnValueOnce(Promise.resolve({ id: '42', admin: true }));
 
   const result = await createTeam(successDB, {
     name: 'aaaaaa',
@@ -102,5 +103,10 @@ test('createTeam resolves to the created ID', async () => {
     password: 'cccccc',
   });
 
-  expect(result).toEqual('42');
+  expect(result).toEqual({ id: '42', admin: true });
+});
+
+test("setSession returns a session with id and admin", async () => {
+  expect(setSession({ id: 1, admin: true }, { id: 2, admin: false }))
+    .toEqual({ id: 2, admin: false });
 });
