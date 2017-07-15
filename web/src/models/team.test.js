@@ -6,37 +6,37 @@ const {
 } = require('./team.js');
 
 test('createTeam missing fields', async () => {
-  expect(createTeam({}, {})).rejects.toEqual(new Error('Missing fields'));
-  expect(createTeam({}, {
+  await expect(createTeam({}, {})).rejects.toEqual(new Error('Missing fields'));
+  await expect(createTeam({}, {
     members: 'b',
     password: 'c',
   })).rejects.toEqual(new Error('Missing fields'));
-  expect(createTeam({}, {
+  await expect(createTeam({}, {
     name: 'a',
     password: 'c',
   })).rejects.toEqual(new Error('Missing fields'));
-  expect(createTeam({}, {
+  await expect(createTeam({}, {
     name: 'a',
     members: 'b',
   })).rejects.toEqual(new Error('Missing fields'));
-  expect(createTeam({}, {
+  await expect(createTeam({}, {
     name: 'a',
   })).rejects.toEqual(new Error('Missing fields'));
-  expect(createTeam({}, {
+  await expect(createTeam({}, {
     members: 'b',
   })).rejects.toEqual(new Error('Missing fields'));
-  expect(createTeam({}, {
+  await expect(createTeam({}, {
     password: 'c',
   })).rejects.toEqual(new Error('Missing fields'));
 });
 
 test('createTeam field size', async () => {
-  expect(createTeam({}, {
+  await expect(createTeam({}, {
     name: 'a',
     members: 'b',
     password: 'ccccc',
   })).rejects.toEqual(new Error('Name must be equal or longer than 3 characters'));
-  expect(createTeam({}, {
+  await expect(createTeam({}, {
     name: 'aaa',
     members: 'b',
     password: 'c',
@@ -46,9 +46,8 @@ test('createTeam field size', async () => {
 test('createTeam create admin', async () => {
   const successDB = {};
   successDB.one = jest.fn();
-  successDB.one.mockReturnValueOnce(Promise.resolve({count: '0'}));
-  successDB.none = jest.fn();
-  successDB.none.mockReturnValueOnce(Promise.resolve());
+  successDB.one.mockReturnValueOnce(Promise.resolve({ count: '0' }));
+  successDB.one.mockReturnValueOnce(Promise.resolve({ id: 1 }));
 
   await createTeam(successDB, {
     name: 'aaaaaa',
@@ -56,15 +55,14 @@ test('createTeam create admin', async () => {
     password: 'cccccc',
   });
 
-  expect(successDB.none.mock.calls[0][1][2]).toEqual(true);
+  expect(successDB.one.mock.calls[1][1][2]).toEqual(true);
 });
 
 test("createTeam don't create admin", async () => {
   const successDB = {};
   successDB.one = jest.fn();
-  successDB.one.mockReturnValueOnce(Promise.resolve({count: '1'}));
-  successDB.none = jest.fn();
-  successDB.none.mockReturnValueOnce(Promise.resolve());
+  successDB.one.mockReturnValueOnce(Promise.resolve({ count: '1' }));
+  successDB.one.mockReturnValueOnce(Promise.resolve({ id: 1 }));
 
   await createTeam(successDB, {
     name: 'aaaaaa',
@@ -72,7 +70,37 @@ test("createTeam don't create admin", async () => {
     password: 'cccccc',
   });
 
-  expect(successDB.none.mock.calls[0][1][2]).toEqual(false);
-  const hash = successDB.none.mock.calls[0][1][3];
+  expect(successDB.one.mock.calls[1][1][2]).toEqual(false);
+  const hash = successDB.one.mock.calls[1][1][3];
   expect(await bcrypt.compare('cccccc', hash)).toBeTruthy();
+});
+
+test("createTeam rejects when there's a DB error", async () => {
+  const successDB = {};
+  successDB.one = jest.fn();
+  successDB.one.mockReturnValueOnce(Promise.resolve({ count: '1' }));
+  successDB.one.mockReturnValueOnce(Promise.reject({ detail: 'yup' }));
+
+  const result = createTeam(successDB, {
+    name: 'aaaaaa',
+    members: 'b',
+    password: 'cccccc',
+  });
+
+  await expect(result).rejects.toEqual(new Error('Was not able to insert. yup'));
+});
+
+test('createTeam resolves to the created ID', async () => {
+  const successDB = {};
+  successDB.one = jest.fn();
+  successDB.one.mockReturnValueOnce(Promise.resolve({ count: '1' }));
+  successDB.one.mockReturnValueOnce(Promise.resolve({ id: '42' }));
+
+  const result = await createTeam(successDB, {
+    name: 'aaaaaa',
+    members: 'b',
+    password: 'cccccc',
+  });
+
+  expect(result).toEqual('42');
 });
