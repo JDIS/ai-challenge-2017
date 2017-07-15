@@ -1,9 +1,7 @@
 'use strict';
 
 function isAuthBool(ctx) {
-  if (ctx.session &&
-      ctx.session.id != null &&
-      typeof ctx.session.id === 'string') {
+  if (ctx.session && ctx.session.id != null) {
     return true;
   } else {
     return false;

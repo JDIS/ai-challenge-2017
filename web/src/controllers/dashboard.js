@@ -2,9 +2,11 @@
 
 const Router = require('koa-router');
 
+const { isAuth } = require('../middlewares/auth.js');
+
 const router = module.exports = new Router();
 
-router.get('/', async function (ctx) {
+router.get('/', isAuth, async function (ctx) {
   console.log(ctx);
   await ctx.render('dashboard');
 });
