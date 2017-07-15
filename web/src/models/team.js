@@ -44,3 +44,23 @@ function setSession (session, team) {
   return newSession;
 }
 module.exports.setSession = setSession;
+
+async function login (db, { name, password }) {
+  try {
+    const team = await db.one(query.selectTeam, [name]);
+
+    if (team.bot === true) {
+      throw new Error("Can't log with a bot");
+    }
+
+    if (!(await bcrypt.compare(password, team.password))) {
+      throw new Error('Wrong password');
+    }
+
+    return { id: team.id, admin: team.admin };
+  } catch (error) {
+    console.error(error);
+    throw new Error('Wrong credentials');
+  }
+}
+module.exports.login = login;
