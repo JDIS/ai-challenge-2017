@@ -8,7 +8,7 @@ const app = module.exports = new Koa();
 app.use(require('koa-logger')());
 app.use(require('koa-helmet')());
 app.use(require('koa-compress')({
-    flush: require('zlib').Z_SYNC_FLUSH
+  flush: require('zlib').Z_SYNC_FLUSH
 }));
 app.keys = [process.env.SECRET];
 app.use(require('koa-session')(app));
@@ -24,7 +24,7 @@ app.use(require('./src/middlewares').manageConnection);
 
 const controllers = require('./src/controllers');
 app.use(controllers.routes())
-   .use(controllers.allowedMethods());
+  .use(controllers.allowedMethods());
 
 const port = process.env.PORT || 8080;
 app.listen(port);

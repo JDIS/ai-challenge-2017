@@ -14,7 +14,6 @@ router.get('/', async function (ctx) {
 router.post('/', async function (ctx) {
   try {
     const team = await Team.createTeam(ctx.state.db, ctx.request.body);
-    console.log(team);
     ctx.session = Team.setSession(ctx.session, team);
     ctx.redirect('/dashboard');
   } catch (error) {
