@@ -1,6 +1,7 @@
 'use strict';
 
 const bcrypt = require('bcrypt');
+const equal = require('deep-equal');
 
 const query = require('./query.js');
 
@@ -64,3 +65,18 @@ async function login (db, { name, password }) {
   }
 }
 module.exports.login = login;
+
+function sessionRedirect (ctx) {
+  if ((!ctx.session || ctx.session.isNew) && !ctx.session.id) {
+    return false;
+  }
+
+  if (ctx.session.id != null && ctx.session.admin === true) {
+    ctx.redirect('/admin');
+  } else if (ctx.session.id != null) {
+    ctx.redirect('/dashboard');
+  }
+
+  return true;
+}
+module.exports.sessionRedirect = sessionRedirect;

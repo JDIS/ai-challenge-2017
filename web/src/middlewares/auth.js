@@ -1,6 +1,6 @@
 'use strict';
 
-function isAuthBool(ctx) {
+function isAuthBool (ctx) {
   if (ctx.session && ctx.session.id != null) {
     return true;
   } else {
