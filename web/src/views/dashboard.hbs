@@ -1,12 +1,3 @@
-<div style="background-color: #ccc">
-  Vous avez reçu une invitation par "team3". Voulez-vous l'accepter?
-
-  <form action="/dashboard/invite" method="get">
-    <button type="submit" value="true" name="accept">Accepter</button>
-    <button type="submit" value="false" name="accept">Refuser</button>
-  </form>
-</div>
-
 <div>
   <h2>Téléverser votre IA</h2>
   <form action="/dashboard/upload" method="post" enctype="multipart/form-data">
@@ -21,7 +12,11 @@
   <h2>Démarrer une nouvelle partie</h2>
   <form action="/game" method="post">
     {{#each bots}}
-      <input type="checkbox" name="team" value="{{this.id}}">{{this.name}}<br>
+      <label>
+        <input type="checkbox" name="team" value="{{this.id}}">
+        {{this.name}}
+        <br/>
+      </label>
     {{/each}}
     <input type="submit" value="Démarrer">
   </form>
