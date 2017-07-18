@@ -28,9 +28,12 @@ if [ ! -d halite]
 then
   mkdir halite
   cd halite
-  wget https://halite.io/downloads/environment/HaliteEnvironment-Source.zip
-  unzip HaliteEnvironment-Source.zip
-  rm HaliteEnvironment-Source.zip
+  wget http://github.com/Sytten/Halite/archive/v1.2.zip 
+  unzip v1.2.zip
+  cp -a Halite-1.2/environment/. .
+  rm -rf Halite-1.2
+  rm v1.2.zip
   make 
+  cd ../
 fi
 

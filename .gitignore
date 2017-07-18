@@ -1,3 +1,7 @@
 .idea/
 __pycache__
+halite/
+games/
+tmp/
 *.pyc
+.DS_Store
