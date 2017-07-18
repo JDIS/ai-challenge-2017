@@ -5,3 +5,4 @@ class Status(Enum):
     created = auto()
     ready = auto()
     played = auto()
+    error = auto()

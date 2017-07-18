@@ -11,7 +11,11 @@ class Game(Base):
     id = Column(Integer, primary_key=True)
     created = Column(DateTime)
     updated = Column(DateTime)
-    teams = Column(String)
+    team0 = Column(Integer)
+    team1 = Column(Integer)
+    team2 = Column(Integer)
+    team3 = Column(Integer)
+    next_team_count = Column(Integer)
     winner = Column(Integer)
     ranked = Column(Boolean)
     status = Column(Enum(Status))
@@ -19,5 +23,4 @@ class Game(Base):
     replay = Column(String)
 
     def __repr__(self):
-        return "<Game(id='%s', teams='%s', status='%s')>" % (
-            self.id, self.teams, self.status)
+        return "<Game(id='%s', status='%s')>" % (self.id, self.status)

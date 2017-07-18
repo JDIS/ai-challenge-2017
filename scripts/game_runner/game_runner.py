@@ -15,7 +15,7 @@ def main():
         logger.info("Polling new games")
         games_ready = database.get_all_ready_games()
         for game in games_ready:
-            teams = game.teams.split(',')
+            teams = [game.team0, game.team1, game.team2, game.team3]
             bots = bots_handler.unzip_bots(teams)
 
             logger.info("Playing game: {}".format(game.id))
