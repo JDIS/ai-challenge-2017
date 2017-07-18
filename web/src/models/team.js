@@ -1,7 +1,6 @@
 'use strict';
 
 const bcrypt = require('bcrypt');
-const equal = require('deep-equal');
 
 const query = require('./query.js');
 

@@ -12,3 +12,5 @@ const dashboard = require('./dashboard.js');
 router.use('/dashboard', dashboard.routes(), dashboard.allowedMethods());
 const admin = require('./admin.js');
 router.use('/admin', admin.routes(), admin.allowedMethods());
+const game = require('./game.js');
+router.use('/game', game.routes(), game.allowedMethods());
