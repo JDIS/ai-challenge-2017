@@ -79,3 +79,8 @@ function sessionRedirect (ctx) {
   return true;
 }
 module.exports.sessionRedirect = sessionRedirect;
+
+async function selectBots (db, session, request) {
+  return db.many(query.selectBots);
+}
+module.exports.selectBots = selectBots;

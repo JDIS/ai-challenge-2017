@@ -5,4 +5,5 @@ module.exports = {
   'selectTeam': 'SELECT * FROM teams WHERE name=$1',
   'insertSimpleGame': `INSERT INTO games(next_team_count, round, ranked, team0)
  VALUES (1, (SELECT round FROM configs WHERE id=0), $1, $2);`,
+  'selectBots': 'SELECT * FROM teams WHERE bot=true;',
 }

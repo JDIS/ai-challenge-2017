@@ -20,11 +20,9 @@
 <div>
   <h2>Démarrer une nouvelle partie</h2>
   <form action="/game" method="post">
-    <input type="checkbox" name="team" value="1">bot1<br>
-    <input type="checkbox" name="team" value="1">bot2<br>
-    <input type="checkbox" name="team" value="1">bot3<br>
-    <input type="checkbox" name="team" value="1">team2<br>
-    <input type="checkbox" name="team" value="1">team3<br>
+    {{#each bots}}
+      <input type="checkbox" name="team" value="{{this.id}}">{{this.name}}<br>
+    {{/each}}
     <input type="submit" value="Démarrer">
   </form>
 </div>
