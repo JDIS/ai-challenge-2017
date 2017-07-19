@@ -54,19 +54,24 @@
   <h2>Historique</h2>
   <table>
     <tr>
-      <th>Équipe</th>
-      <th>Victoire?</th>
-      <th>Date</th>
+      <th>Équipe 0</th>
+      <th>Équipe 1</th>
+      <th>Équipe 2</th>
+      <th>Équipe 3</th>
+      <th>État</th>
+      <th>Victoire ?</th>
+      <th>Mis à jour le</th>
     </tr>
-    <tr>
-      <td>team2</td>
-      <td>Nope</td>
-      <td>Hier</td>
-    </tr>
-    <tr>
-      <td>team2</td>
-      <td>Nope</td>
-      <td>Encore hier</td>
-    </tr>
+    {{#each relatedGames}}
+      <tr>
+        <td>{{this.team0}}</td>
+        <td>{{this.team1}}</td>
+        <td>{{this.team2}}</td>
+        <td>{{this.team3}}</td>
+        <td>{{this.status}}</td>
+        <td>{{this.won}}</td>
+        <td>{{this.updated}}</td>
+      </tr>
+    {{/each}}
   </table>
 </div>

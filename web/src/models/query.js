@@ -26,4 +26,10 @@ RETURNING next_team_count`,
   'joinGameAsTeam1': 'UPDATE games SET team1=$1 WHERE id=$2',
   'joinGameAsTeam2': 'UPDATE games SET team2=$1 WHERE id=$2',
   'joinGameAsTeam3': 'UPDATE games SET team3=$1 WHERE id=$2',
+  'selectRelatedGames':
+`SELECT * FROM games
+WHERE (team0 IS NOT null AND team0<>$1)
+ OR (team1 IS NOT null AND team1<>$1)
+ OR (team2 IS NOT null AND team2<>$1)
+ OR (team3 IS NOT null AND team3<>$1);`,
 }

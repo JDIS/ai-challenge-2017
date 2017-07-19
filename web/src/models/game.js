@@ -21,6 +21,16 @@ async function selectJoinableGames (db, session) {
 }
 module.exports.selectJoinableGames = selectJoinableGames;
 
+async function selectRelatedGames (db, { id }) {
+  const games = await db.any(query.selectRelatedGames, [id]);
+  // Adds a won attribut
+  return games.map(g => {
+    g.won = g.winner === id;
+    return g;
+  });
+}
+module.exports.selectRelatedGames = selectRelatedGames;
+
 async function joinGame (db, { id: teamId }, request) {
   if (request.join == null) {
     throw new Error('Wrong game id');
