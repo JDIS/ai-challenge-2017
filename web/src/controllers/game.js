@@ -12,3 +12,13 @@ router.post('/', isAuth, async function (ctx) {
   await Game.createGame(ctx.state.db, ctx.session, ctx.request.body);
   Team.sessionRedirect(ctx);
 });
+
+router.post('/join', isAuth, async function (ctx) {
+  try {
+    await Game.joinGame(ctx.state.db, ctx.session, ctx.request.body);
+    Team.sessionRedirect(ctx);
+  } catch (error) {
+    ctx.state = { error };
+    await ctx.render('error');
+  }
+});
