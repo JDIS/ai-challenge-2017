@@ -8,4 +8,12 @@ module.exports = {
   )
  VALUES ((SELECT round FROM configs WHERE id=0), $1, $2, $3, $4, $5, $6);`,
   'selectBots': 'SELECT * FROM teams WHERE bot=true;',
+  'selectJoinableGames':
+`SELECT * FROM games
+WHERE status='created'
+ AND next_team_count < 4
+ AND (team0 IS null OR team0<>$1)
+ AND (team1 IS null OR team1<>$1)
+ AND (team2 IS null OR team2<>$1)
+ AND (team3 IS null OR team3<>$1);`,
 }

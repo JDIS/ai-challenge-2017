@@ -16,6 +16,11 @@ async function createGame (db, session, request, ranked = false) {
 }
 module.exports.createGame = createGame;
 
+async function selectJoinableGames (db, session) {
+  return db.any(query.selectJoinableGames, [session.id]);
+}
+module.exports.selectJoinableGames = selectJoinableGames;
+
 async function joinGame (db, session, request) {
 }
 module.exports.joinGame = joinGame;

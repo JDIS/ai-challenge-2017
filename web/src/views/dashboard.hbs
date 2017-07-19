@@ -23,6 +23,34 @@
 </div>
 
 <div>
+  <h2>Rejoindre une partie</h2>
+    <form>
+      <table>
+        <tr>
+          <th>Équipe 0</th>
+          <th>Équipe 1</th>
+          <th>Équipe 2</th>
+          <th>Équipe 3</th>
+          <th></th>
+        </tr>
+        {{#each joinableGames}}
+          <tr>
+            <td>{{this.team0}}</td>
+            <td>{{this.team1}}</td>
+            <td>{{this.team2}}</td>
+            <td>{{this.team3}}</td>
+            <td>
+              <button type="submit" name="join" value="{{this.id}}">
+                Rejoindre
+              </button>
+            </td>
+          </tr>
+        {{/each}}
+      </table>
+    <form>
+</div>
+
+<div>
   <h2>Historique</h2>
   <table>
     <tr>
