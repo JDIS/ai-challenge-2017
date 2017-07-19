@@ -16,4 +16,14 @@ WHERE status='created'
  AND (team1 IS null OR team1<>$1)
  AND (team2 IS null OR team2<>$1)
  AND (team3 IS null OR team3<>$1);`,
+  'getNextTeamIDForGame': `
+UPDATE games
+SET next_team_count = next_team_count + 1
+WHERE id=$1
+RETURNING next_team_count`,
+  // I know, this should be nicer
+  'joinGameAsTeam0': 'UPDATE games SET team0=$1 WHERE id=$2',
+  'joinGameAsTeam1': 'UPDATE games SET team1=$1 WHERE id=$2',
+  'joinGameAsTeam2': 'UPDATE games SET team2=$1 WHERE id=$2',
+  'joinGameAsTeam3': 'UPDATE games SET team3=$1 WHERE id=$2',
 }
