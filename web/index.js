@@ -10,12 +10,12 @@ app.use(require('koa-helmet')());
 app.use(require('koa-compress')({
   flush: require('zlib').Z_SYNC_FLUSH
 }));
+
 app.keys = [process.env.SECRET];
 app.use(require('koa-session')(app));
 app.use(require('koa-bodyparser')());
-require('koa-validate')(app);
 
-app.use(require('koa-views')(__dirname + '/src/views', {
+app.use(require('koa-views')(`${__dirname}/src/views`, {
   extension: 'hbs',
   map: { hbs: 'handlebars' }
 }));
@@ -26,6 +26,14 @@ app.use(require('./src/middlewares').manageConnection);
 const controllers = require('./src/controllers');
 app.use(controllers.routes())
   .use(controllers.allowedMethods());
+
+const serveList = require('koa-serve-list');
+const serveStatic = require('koa-serve-static');
+const mount = require('koa-mount');
+app.use(mount('/public', (ctx, next) =>
+  serveList('public')(ctx, next)
+    .catch(() => serveStatic('public')(ctx, next))
+    .catch(e => console.error(e))));
 
 const port = process.env.PORT || 8080;
 app.listen(port);
