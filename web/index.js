@@ -4,7 +4,7 @@ require('dotenv').config();
 const Koa = require('koa');
 const app = module.exports = new Koa();
 
-//app.use(require('koa-favicon')(require.resolve('./public/favicon.ico')));
+app.use(require('koa-favicon')((`${__dirname}/public/favicon.ico`)));
 app.use(require('koa-logger')());
 app.use(require('koa-helmet')());
 app.use(require('koa-compress')({
