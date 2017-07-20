@@ -4,7 +4,7 @@ require('dotenv').config();
 const Koa = require('koa');
 const app = module.exports = new Koa();
 
-app.use(require('koa-favicon')((`${__dirname}/public/favicon.ico`)));
+app.use(require('koa-favicon')((`${__dirname}/resources/favicon.png`)));
 app.use(require('koa-logger')());
 app.use(require('koa-helmet')());
 app.use(require('koa-compress')({
@@ -17,7 +17,13 @@ app.use(require('koa-bodyparser')());
 
 app.use(require('koa-views')(`${__dirname}/src/views`, {
   extension: 'hbs',
-  map: { hbs: 'handlebars' }
+  map: { hbs: 'handlebars' },
+  options: {
+    partials: {
+      start: 'start',
+      end: 'end',
+    },
+  }
 }));
 app.use(require('./src/middlewares').manage401);
 app.use(require('./src/middlewares').addHelpers);
