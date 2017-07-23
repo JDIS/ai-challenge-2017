@@ -1,11 +1,12 @@
 {{> start }}
 <div>
   <h2>Téléverser votre IA</h2>
-  <form action="/dashboard/upload" method="post" enctype="multipart/form-data">
+  <form action="/team/bot" method="post" enctype="multipart/form-data">
     <label>
       .zip
-      <input type="file" id="file">
+      <input type="file" name="file">
     </label>
+    <input type="submit" value="Téléverser">
   </form>
 </div>
 

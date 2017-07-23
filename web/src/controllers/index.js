@@ -14,3 +14,5 @@ const admin = require('./admin.js');
 router.use('/admin', admin.routes(), admin.allowedMethods());
 const game = require('./game.js');
 router.use('/game', game.routes(), game.allowedMethods());
+const team = require('./team.js');
+router.use('/team', team.routes(), team.allowedMethods());
