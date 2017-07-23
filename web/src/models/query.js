@@ -32,5 +32,6 @@ WHERE (team0 IS NOT null AND team0<>$1)
  OR (team1 IS NOT null AND team1<>$1)
  OR (team2 IS NOT null AND team2<>$1)
  OR (team3 IS NOT null AND team3<>$1);`,
-  'getRound': 'SELECT round FROM configs WHERE id=0',
+  'getRound': 'SELECT round FROM configs WHERE id=0;',
+  'updateRound': 'UPDATE configs SET round=$1 WHERE id=0;',
 }

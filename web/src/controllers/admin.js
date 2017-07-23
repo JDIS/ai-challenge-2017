@@ -11,3 +11,13 @@ router.get('/', isAdmin, async function (ctx) {
   ctx.state.round = await Admin.getRound(ctx.state.db);
   await ctx.render('admin');
 });
+
+router.post('/round', isAdmin, async function (ctx) {
+  try {
+    await Admin.updateRound(ctx.state.db, ctx.request.body);
+    ctx.redirect('/admin');
+  } catch (error) {
+    ctx.state = { error };
+    await ctx.render('error');
+  }
+});
