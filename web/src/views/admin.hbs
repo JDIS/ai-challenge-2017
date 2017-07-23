@@ -13,7 +13,7 @@
 
 <div>
   <h2>Lancer un match compétitif</h2>
-  <form action="/admin/match" method="post">
+  <form action="/game/ranked" method="post">
     <table>
       <tr>
         <th>Équipe</th>
@@ -26,12 +26,34 @@
           <td>{{this.name}}</td>
           <td>{{this.bot}}</td>
           <td>{{this.members}}</td>
-          <td><input type="checkbox" name="team" value="{{this.id}}"></td>
+          <td><input type="checkbox" name="teams" value="{{this.id}}"></td>
         </tr>
       {{/each}}
     </table>
     <input type="submit" value="Lancer la partie">
   </form>
+</div>
+
+<div>
+  <h2>Ranked</h2>
+  <table>
+    <tr>
+      <th>Équipe 0</th>
+      <th>Équipe 1</th>
+      <th>Équipe 2</th>
+      <th>Équipe 3</th>
+      <th>Gagnant</th>
+    </tr>
+    {{#each ranked}}
+      <tr>
+        <td>{{this.team0}}</td>
+        <td>{{this.team1}}</td>
+        <td>{{this.team2}}</td>
+        <td>{{this.team3}}</td>
+        <td>{{this.winner}}</td>
+      </tr>
+    {{/each}}
+  </table>
 </div>
 
 {{> end }}

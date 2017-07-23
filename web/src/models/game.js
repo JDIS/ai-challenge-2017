@@ -2,11 +2,11 @@
 
 const query = require('./query.js');
 
-async function createGame (db, session, request, ranked = false) {
+async function createGame (db, session, request) {
   // It's a flatten
   const bots = [...(request.team || [])];
   await db.none(query.insertGame, [
-    ranked,
+    false,
     bots.length + 1,
     session.id,
     bots[0] || null,
@@ -15,6 +15,20 @@ async function createGame (db, session, request, ranked = false) {
   ]);
 }
 module.exports.createGame = createGame;
+
+module.exports.createRanked = async (db, session, request) => {
+  if (request.teams.length !== 4) {
+    throw new Error('Should submit with 4 teams');
+  }
+  await db.none(query.insertGame, [
+    true,
+    4,
+    request.teams[0],
+    request.teams[1],
+    request.teams[2],
+    request.teams[3],
+  ]);
+}
 
 async function selectJoinableGames (db, session) {
   return db.any(query.selectJoinableGames, [session.id]);
@@ -54,3 +68,7 @@ async function joinGame (db, { id: teamId }, request) {
   }
 }
 module.exports.joinGame = joinGame;
+
+module.exports.selectRankeds = async db => {
+  return db.any(query.selectRankeds);
+}
