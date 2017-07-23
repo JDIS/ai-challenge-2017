@@ -23,3 +23,25 @@ router.post('/bot', isAuth, async function (ctx) {
   console.log(ctx.req.file);
   Team.sessionRedirect(ctx);
 });
+
+router.post('/', async function (ctx) {
+  try {
+    const team = await Team.createTeam(ctx.state.db, ctx.request.body);
+    ctx.session = Team.setSession(ctx.session, team);
+    Team.sessionRedirect(ctx);
+  } catch (error) {
+    ctx.state = { error };
+    await ctx.render('error');
+  }
+});
+
+router.post('/session', async function (ctx) {
+  try {
+    const team = await Team.login(ctx.state.db, ctx.request.body);
+    ctx.session = Team.setSession(ctx.session, team);
+    Team.sessionRedirect(ctx);
+  } catch (error) {
+    ctx.state = { error };
+    await ctx.render('error');
+  }
+});
