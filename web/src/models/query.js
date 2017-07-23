@@ -3,6 +3,7 @@ module.exports = {
   'insertTeam': `INSERT INTO teams(name, members, bot, admin, password)
  VALUES ($1, $2, false, $3, $4) RETURNING id, admin;`,
   'selectTeam': 'SELECT * FROM teams WHERE name=$1',
+  'selectTeams': 'SELECT * FROM teams WHERE admin=false',
   'insertGame': `INSERT INTO games(
     round, ranked, next_team_count, team0, team1, team2, team3
   )

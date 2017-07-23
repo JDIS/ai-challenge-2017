@@ -17,23 +17,20 @@
     <table>
       <tr>
         <th>Équipe</th>
-        <th>Mise à jour</th>
-        <th>Match?</th>
+        <th>Bot</th>
         <th>Membres</th>
+        <th>Match?</th>
       </tr>
-      <tr>
-        <td>team2</td>
-        <td>Hier</td>
-        <th><input type="checkbox" name="team" value="2"></th>
-        <th>Moi, toi</th>
-      </tr>
-      <tr>
-        <td>team3</td>
-        <td>Hier</td>
-        <th><input type="checkbox" name="team" value="3"></th>
-        <th>Harry Potter</th>
-      </tr>
+      {{#each teams}}
+        <tr>
+          <td>{{this.name}}</td>
+          <td>{{this.bot}}</td>
+          <td>{{this.members}}</td>
+          <td><input type="checkbox" name="team" value="{{this.id}}"></td>
+        </tr>
+      {{/each}}
     </table>
+    <input type="submit" value="Lancer la partie">
   </form>
 </div>
 

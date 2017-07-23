@@ -84,3 +84,7 @@ async function selectBots (db, session, request) {
   return db.many(query.selectBots);
 }
 module.exports.selectBots = selectBots;
+
+module.exports.selectTeams = async db => {
+  return db.many(query.selectTeams);
+}
