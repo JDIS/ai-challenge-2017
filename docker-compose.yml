@@ -7,3 +7,11 @@ services:
     environment:
       POSTGRES_USER: jdis
       POSTGRES_PASSWORD: compeIA
+
+  web:
+    ports:
+      - "8080:8080"
+    build: ./web/
+    command: npm start
+    volumes:
+      - "./web:/usr/src"
