@@ -39,6 +39,7 @@
     "koa-validate": "^1.0.7",
     "koa-views": "^6.0.2",
     "pg-promise": "^6.3.5",
+    "xss": "^0.3.3",
     "zlib": "^1.0.5"
   },
   "devDependencies": {

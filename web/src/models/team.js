@@ -1,6 +1,7 @@
 'use strict';
 
 const bcrypt = require('bcrypt');
+const xss = require('xss');
 
 const query = require('./query.js');
 
@@ -32,7 +33,7 @@ async function createTeam (db, form) {
     throw new Error('Password must be equal or longer than 5 characters');
   }
 
-  return insertTeam(db, name, members, password);
+  return insertTeam(db, xss(name), xss(members), password);
 }
 module.exports.createTeam = createTeam;
 
