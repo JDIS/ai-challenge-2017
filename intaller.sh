@@ -14,6 +14,7 @@ apt-get -y install make
 apt-get -y install build-essential
 apt-get -y install postgresql-client-common
 apt-get -y install postgresql-client
+apt-get -y install mono-complete
 
 pip3 install psycopg2
 

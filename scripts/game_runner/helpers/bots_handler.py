@@ -2,6 +2,7 @@ import os
 import shutil
 import helpers.directories as directories
 from zipfile import ZipFile
+from subprocess import check_output
 from helpers.language import Language
 
 
@@ -21,12 +22,9 @@ def unzip_bots(bots):
         bot_path = tmp_directory + str(bot)
         zip_bot.extractall(bot_path)
         bots_extracted[bot] = {'path': bot_path, 'language': _detect_language(bot_path)}
-
-        if bots_extracted[bot]['language'].value.get('compiler'):
-            # Compile
-            pass
-
         zip_bot.close()
+
+        _compile_bot(bots_extracted[bot])
 
     return bots_extracted
 
@@ -37,6 +35,14 @@ def _detect_language(bot_path):
         if os.path.isfile(path):
             return lang
     # throw
+
+
+def _compile_bot(bot):
+    # try catch
+    compiler = bot['language'].value.get('compiler')
+    if compiler:
+        compilation_output = check_output(compiler.format(bot['path']), shell=True)
+        print(compilation_output)
 
 
 
