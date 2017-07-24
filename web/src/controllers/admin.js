@@ -13,6 +13,7 @@ router.get('/', isAdmin, async function (ctx) {
   ctx.state.round = await Admin.getRound(ctx.state.db);
   ctx.state.teams = await Team.selectTeams(ctx.state.db);
   ctx.state.ranked = await Game.selectRankeds(ctx.state.db);
+  console.log(ctx.state.ranked);
   await ctx.render('admin');
 });
 

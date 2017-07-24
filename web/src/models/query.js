@@ -10,8 +10,18 @@ module.exports = {
   )
  VALUES ((SELECT round FROM configs WHERE id=0), $1, $2, $3, $4, $5, $6);`,
   'selectBots': 'SELECT * FROM teams WHERE bot=true;',
+
   'selectJoinableGames':
-`SELECT * FROM games
+`SELECT games.*,
+ t0.name AS t0Name,
+ t1.name AS t1Name,
+ t2.name AS t2Name,
+ t3.name AS t3Name
+ FROM games
+LEFT JOIN teams AS t0 ON t0.id = games.team0
+LEFT JOIN teams AS t1 ON t1.id = games.team1
+LEFT JOIN teams AS t2 ON t2.id = games.team2
+LEFT JOIN teams AS t3 ON t3.id = games.team3
 WHERE status='created'
  AND ranked = false
  AND next_team_count < 4
@@ -19,6 +29,7 @@ WHERE status='created'
  AND (team1 IS null OR team1<>$1)
  AND (team2 IS null OR team2<>$1)
  AND (team3 IS null OR team3<>$1);`,
+
   'getNextTeamIDForGame': `
 UPDATE games
 SET next_team_count = next_team_count + 1
@@ -30,13 +41,34 @@ RETURNING next_team_count`,
   'joinGameAsTeam2': 'UPDATE games SET team2=$1 WHERE id=$2',
   'joinGameAsTeam3': 'UPDATE games SET team3=$1 WHERE id=$2',
   'selectRelatedGames':
-`SELECT * FROM games
+`SELECT games.*,
+ t0.name AS t0Name,
+ t1.name AS t1Name,
+ t2.name AS t2Name,
+ t3.name AS t3Name
+ FROM games
+LEFT JOIN teams AS t0 ON t0.id = games.team0
+LEFT JOIN teams AS t1 ON t1.id = games.team1
+LEFT JOIN teams AS t2 ON t2.id = games.team2
+LEFT JOIN teams AS t3 ON t3.id = games.team3
 WHERE (team0 IS NOT null AND team0<>$1)
  OR (team1 IS NOT null AND team1<>$1)
  OR (team2 IS NOT null AND team2<>$1)
  OR (team3 IS NOT null AND team3<>$1);`,
   'getRound': 'SELECT round FROM configs WHERE id=0;',
   'updateRound': 'UPDATE configs SET round=$1 WHERE id=0;',
-  'selectRankeds': 'SELECT * FROM games WHERE ranked=true',
+  'selectRankeds': `SELECT games.*,
+ t0.name AS t0Name,
+ t1.name AS t1Name,
+ t2.name AS t2Name,
+ t3.name AS t3Name,
+ tw.name AS winnerName
+ FROM games
+LEFT JOIN teams AS t0 ON t0.id = games.team0
+LEFT JOIN teams AS t1 ON t1.id = games.team1
+LEFT JOIN teams AS t2 ON t2.id = games.team2
+LEFT JOIN teams AS t3 ON t3.id = games.team3
+LEFT JOIN teams AS tw ON tw.id = games.winner
+WHERE ranked=true`,
   'selectStats': "SELECT * FROM games WHERE ranked=true AND status='played'",
 }
