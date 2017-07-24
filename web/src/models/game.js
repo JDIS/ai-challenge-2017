@@ -72,3 +72,11 @@ module.exports.joinGame = joinGame;
 module.exports.selectRankeds = async db => {
   return db.any(query.selectRankeds);
 }
+
+module.exports.selectStats = async db => {
+  return {
+    games: await db.any(query.selectStats),
+    teams: await db.any(query.selectCleanTeams),
+    round: (await db.one(query.getRound)).round,
+  }
+}

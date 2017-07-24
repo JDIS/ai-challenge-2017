@@ -36,3 +36,8 @@ router.post('/join', isAuth, async function (ctx) {
 router.get('/', async function (ctx) {
   await ctx.render('leaderboard');
 });
+
+router.get('/stats.json', async function (ctx, next) {
+  ctx.response.body = await Game.selectStats(ctx.state.db);
+  await next();
+});

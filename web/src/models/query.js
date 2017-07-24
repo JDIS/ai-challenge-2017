@@ -4,6 +4,7 @@ module.exports = {
  VALUES ($1, $2, false, $3, $4) RETURNING id, admin;`,
   'selectTeam': 'SELECT * FROM teams WHERE name=$1',
   'selectTeams': 'SELECT * FROM teams WHERE admin=false',
+  'selectCleanTeams': 'SELECT id, name, bot FROM teams WHERE admin=false AND bot=false',
   'insertGame': `INSERT INTO games(
     round, ranked, next_team_count, team0, team1, team2, team3
   )
@@ -37,4 +38,5 @@ WHERE (team0 IS NOT null AND team0<>$1)
   'getRound': 'SELECT round FROM configs WHERE id=0;',
   'updateRound': 'UPDATE configs SET round=$1 WHERE id=0;',
   'selectRankeds': 'SELECT * FROM games WHERE ranked=true',
+  'selectStats': "SELECT * FROM games WHERE ranked=true AND status='played'",
 }
