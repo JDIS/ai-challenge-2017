@@ -32,3 +32,7 @@ router.post('/join', isAuth, async function (ctx) {
     await ctx.render('error');
   }
 });
+
+router.get('/', async function (ctx) {
+  await ctx.render('leaderboard');
+});
