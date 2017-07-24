@@ -20,7 +20,7 @@ def main():
 
             logger.info("Playing game: {}".format(game.id))
             rank, replay_id = halite.play_game(bots)
-            database.update_played_game(game, rank[0], replay_id)
+            database.update_played_game(game, rank, replay_id)
 
         logger.info("Finished processing games")
         time.sleep(1)

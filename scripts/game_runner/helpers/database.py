@@ -12,7 +12,12 @@ def get_all_ready_games():
     return conn.execute(s)
 
 
-def update_played_game(game, winner, replay):
+def update_played_game(game, rank, replay):
     conn = Engine.connect()
-    s = update(Game).where(Game.id == game.id).values(winner=winner, status=Status.played, replay=replay)
+    s = update(Game).where(Game.id == game.id).values(grade0=rank[0],
+                                                      grade1=rank[1],
+                                                      grade2=rank[2],
+                                                      grade3=rank[3],
+                                                      status=Status.played,
+                                                      replay=replay)
     conn.execute(s)
