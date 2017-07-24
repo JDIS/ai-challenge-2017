@@ -21,6 +21,7 @@ configs = sa.table('configs',
                    sa.Column('round', sa.Integer(), server_default='0'),
 )
 
+
 def upgrade():
     op.create_table('configs',
                     sa.Column('id', sa.Integer, primary_key=True),
