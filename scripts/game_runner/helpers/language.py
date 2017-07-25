@@ -7,4 +7,4 @@ class Language(Enum):
     csharp = {'extension': '.cs',
               'launcher': 'mono {}/bin/Release/Halite.exe',
               'compiler': 'xbuild /p:Configuration=Release /p:Platform=AnyCpu {}/Halite.csproj'}
-    cpp = {'extension': '.cpp', 'launcher': '{}/MyBot.o', 'compiler': 'g++ -std=c++11 {}/MyBot.cpp -o {}/MyBot.o'}
+    cpp = {'extension': '.cpp', 'launcher': '{}/Halite', 'compiler': 'make -C {}/'}
