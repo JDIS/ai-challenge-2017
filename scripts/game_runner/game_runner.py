@@ -5,8 +5,8 @@ import helpers.database as database
 import helpers.bots_handler as bots_handler
 import helpers.halite as halite
 
-logging.basicConfig(stream=sys.stdout, level=logging.INFO, format='%(asctime)s %(name)-30s %(levelname)-8s %(message)s')
-logger = logging.getLogger("{}/{}".format(__file__, __name__))
+logging.basicConfig(stream=sys.stdout, level=logging.INFO, format='%(asctime)s %(name)-20s %(levelname)-8s %(message)s')
+logger = logging.getLogger(__name__)
 running = True
 
 
@@ -16,7 +16,7 @@ def main():
         games_ready = database.get_all_ready_games()
         for game in games_ready:
             teams = [game.team0, game.team1, game.team2, game.team3]
-            bots = bots_handler.unzip_bots(teams)
+            bots = bots_handler.prepare_bots(teams)
 
             logger.info("Playing game: {}".format(game.id))
             rank, replay_id = halite.play_game(bots)
