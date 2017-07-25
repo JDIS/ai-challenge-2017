@@ -16,6 +16,9 @@ apt-get -y install postgresql-client-common
 apt-get -y install postgresql-client
 apt-get -y install mono-complete
 
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+apt-get install -y nodejs
+
 pip3 install psycopg2
 
 # Database
