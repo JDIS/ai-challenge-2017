@@ -1,7 +1,8 @@
 .idea/
 __pycache__
 halite/
-games/
+web/public/games/
+web/public/errors/
 tmp/
 *.pyc
 .DS_Store
