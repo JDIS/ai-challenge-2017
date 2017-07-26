@@ -43,11 +43,17 @@
      data.teams = data.teams.map(t => {
        t.scores = [];
        let score = 0;
-       for (let i = 0; i <= data.round; ++i) {
+       for (let round = 0; round <= data.round; ++round) {
          score += data.games.reduce((acc, g) => {
-           if (g.winner === t.id && g.round === i) {
-             // Score's rule
-             return acc + i;
+           // Score's rule
+           if (g.round === round) {
+             if (g.grade0 === t.id) {
+               return acc + round * 3;
+             } else if (g.grade1 === t.id) {
+               return acc + round * 2;
+             } else if (g.grade2 === t.id) {
+               return acc + round;
+             }
            }
            return acc;
          }, 0);
