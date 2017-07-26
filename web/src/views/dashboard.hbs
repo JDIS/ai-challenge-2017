@@ -56,6 +56,7 @@
   <h2>Historique</h2>
   <table>
     <tr>
+      <th>Ranked</th>
       <th>Équipe 0</th>
       <th>Équipe 1</th>
       <th>Équipe 2</th>
@@ -69,6 +70,7 @@
     </tr>
     {{#each relatedGames}}
       <tr>
+        <td>{{this.ranked}}</td>
         <td>{{this.t0name}}</td>
         <td>{{this.t1name}}</td>
         <td>{{this.t2name}}</td>

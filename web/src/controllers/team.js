@@ -20,7 +20,6 @@ const router = module.exports = new Router();
 router.post('/bot', isAuth, async function (ctx) {
   ctx.req.session = ctx.session;
   await upload.single('file')(ctx);
-  console.log(ctx.req.file);
   Team.sessionRedirect(ctx);
 });
 

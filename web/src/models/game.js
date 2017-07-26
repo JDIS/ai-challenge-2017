@@ -7,6 +7,7 @@ async function createGame (db, session, request) {
   const bots = [...(request.team || [])];
   await db.none(query.insertGame, [
     false,
+    bots.length >= 3 ? 'ready': 'created',
     bots.length + 1,
     session.id,
     bots[0] || null,
@@ -22,6 +23,7 @@ module.exports.createRanked = async (db, session, request) => {
   }
   await db.none(query.insertGame, [
     true,
+    'ready',
     4,
     request.teams[0],
     request.teams[1],
@@ -59,7 +61,8 @@ async function joinGame (db, { id: teamId }, request) {
   } else if (nextId === 2) {
     return db.none(query.joinGameAsTeam2, [teamId, request.join]);
   } else if (nextId === 3) {
-    return db.none(query.joinGameAsTeam3, [teamId, request.join]);
+    await db.none(query.joinGameAsTeam3, [teamId, request.join]);
+    return db.none(query.readyGame, [request.join]);
   }
 }
 module.exports.joinGame = joinGame;

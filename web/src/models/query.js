@@ -6,9 +6,9 @@ module.exports = {
   'selectTeams': 'SELECT * FROM teams WHERE admin=false',
   'selectCleanTeams': 'SELECT id, name, bot FROM teams WHERE admin=false AND bot=false',
   'insertGame': `INSERT INTO games(
-    round, ranked, next_team_count, team0, team1, team2, team3
+    round, ranked, status, next_team_count, team0, team1, team2, team3
   )
- VALUES ((SELECT round FROM configs WHERE id=0), $1, $2, $3, $4, $5, $6);`,
+ VALUES ((SELECT round FROM configs WHERE id=0), $1, $2, $3, $4, $5, $6, $7);`,
   'selectBots': 'SELECT * FROM teams WHERE bot=true;',
 
   'selectJoinableGames':
@@ -79,4 +79,5 @@ LEFT JOIN teams AS g3 ON g0.id = games.grade3
 WHERE ranked=true`,
 
   'selectStats': "SELECT * FROM games WHERE ranked=true AND status='played'",
+  'readyGame': "UPDATE games SET status='ready' WHERE id=$1",
 }
