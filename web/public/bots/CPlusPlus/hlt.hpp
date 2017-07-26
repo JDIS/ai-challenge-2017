@@ -3,6 +3,8 @@
 
 #include <list>
 #include <vector>
+#include <queue>
+#include <functional>
 #include <random>
 #include <unordered_map>
 
@@ -12,14 +14,12 @@
 #define SOUTH 3
 #define WEST 4
 
-const int DIRECTIONS[] = { STILL, NORTH, EAST, SOUTH, WEST };
-const int CARDINALS[] = { NORTH, EAST, SOUTH, WEST };
-
-namespace hlt
-{
+namespace hlt {
 	struct Location
 	{
 		unsigned short x, y;
+
+		Location() :x{}, y{} {}
 
 		Location(unsigned short _x, unsigned short _y)
 		{
@@ -27,16 +27,47 @@ namespace hlt
 			y = _y;
 		}
 
-		bool operator==(const Location& other)
+		bool operator==(const Location& other) const
 		{
 			return x == other.x && y == other.y;
 		}
 
-		bool operator!=(const Location& other)
+		bool operator!=(const Location& other) const
 		{
 			return !(*this == other);
 		}
 	};
+}
+
+const int DIRECTIONS[] = { STILL, NORTH, EAST, SOUTH, WEST };
+const int CARDINALS[] = { NORTH, EAST, SOUTH, WEST };
+
+namespace std
+{
+	template<>
+	struct hash<hlt::Location>
+	{
+		typedef hlt::Location argument_type;
+		typedef std::size_t result_type;
+		result_type operator()(argument_type const& s) const
+		{
+			size_t h1 = std::hash<unsigned short>{}(s.x);
+			size_t h2 = std::hash<unsigned short>{}(s.y);
+			return h1 ^ (h2 << 1);
+		}
+	};
+}
+namespace hlt
+{
+	struct HashLocation
+	{
+		size_t operator()(Location const& s) const
+		{
+			size_t h1 = std::hash<unsigned short>{}(s.x);
+			size_t h2 = std::hash<unsigned short>{}(s.y);
+			return h1 ^ (h2 << 1);
+		}
+	}; 
 
 	static bool operator<(const Location& l1, const Location& l2)
 	{
@@ -53,18 +84,17 @@ namespace hlt
 	template <typename T, typename priority_t>
 	struct PriorityQueue
 	{
-		typedef pair<priority_t, T> PQElement;
-		priority_queue<PQElement, std::vector<PQElement>,
-			std::greater<PQElement>> elements;
+		typedef std::pair<priority_t, T> PQElement;
+		std::priority_queue<PQElement, std::vector<PQElement>, std::greater<PQElement>> elements;
 
-		inline bool empty() const { return elements.empty(); }
+		bool empty() const { return elements.empty(); }
 
-		inline void put(T item, priority_t priority)
+		void put(T item, priority_t priority)
 		{
 			elements.emplace(priority, item);
 		}
 
-		inline T get()
+		T get()
 		{
 			T best_item = elements.top().second;
 			elements.pop();
@@ -160,10 +190,10 @@ namespace hlt
 		{
 			std::vector<Location> neighbors;
 
-			neighbors.push_back(Location{ (target.x + 1) % width, target.y });
-			neighbors.push_back(Location{ (target.x - 1) % width, target.y });
-			neighbors.push_back(Location{ target.x, (target.y - 1) % height });
-			neighbors.push_back(Location{ target.x, (target.y + 1) % height });
+			//neighbors.push_back(Location{ static_cast<unsigned short>( (target.x + 1) % width), static_cast<unsigned short>(target.y) });
+			//neighbors.push_back(Location{ static_cast<unsigned short>((target.x - 1) % width), static_cast<unsigned short>(target.y) });
+			//neighbors.push_back(Location{ static_cast<unsigned short>(target.x), static_cast<unsigned short>((target.y - 1) % height) });
+			//neighbors.push_back(Location{ static_cast<unsigned short>(target.x), static_cast<unsigned short>((target.y + 1) % height) });
 
 			return neighbors;
 		}

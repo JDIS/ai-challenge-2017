@@ -10,9 +10,9 @@
 #include "networking.hpp"
 
 int main() {
-    srand(time(NULL));
+    srand(time(nullptr));
 
-    std::cout.sync_with_stdio(0);
+    std::cout.sync_with_stdio(false);
 
     unsigned char myID;
     hlt::GameMap presentMap;
