@@ -61,7 +61,10 @@
       <th>Équipe 2</th>
       <th>Équipe 3</th>
       <th>État</th>
-      <th>Victoire ?</th>
+      <th>Grade 0 (Gagnant)</th>
+      <th>Grade 1</th>
+      <th>Grade 2</th>
+      <th>Grade 3</th>
       <th>Mis à jour le</th>
     </tr>
     {{#each relatedGames}}
@@ -71,7 +74,10 @@
         <td>{{this.t2name}}</td>
         <td>{{this.t3name}}</td>
         <td>{{this.status}}</td>
-        <td>{{this.won}}</td>
+        <td>{{this.g0name}}</td>
+        <td>{{this.g1name}}</td>
+        <td>{{this.g2name}}</td>
+        <td>{{this.g3name}}</td>
         <td>{{this.updated}}</td>
       </tr>
     {{/each}}

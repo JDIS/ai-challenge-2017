@@ -57,18 +57,26 @@ WHERE (team0 IS NOT null AND team0<>$1)
  OR (team3 IS NOT null AND team3<>$1);`,
   'getRound': 'SELECT round FROM configs WHERE id=0;',
   'updateRound': 'UPDATE configs SET round=$1 WHERE id=0;',
+
   'selectRankeds': `SELECT games.*,
  t0.name AS t0Name,
  t1.name AS t1Name,
  t2.name AS t2Name,
  t3.name AS t3Name,
- tw.name AS winnerName
+ g0.name AS g0Name,
+ g1.name AS g1Name,
+ g2.name AS g2Name,
+ g3.name AS g3Name
  FROM games
 LEFT JOIN teams AS t0 ON t0.id = games.team0
 LEFT JOIN teams AS t1 ON t1.id = games.team1
 LEFT JOIN teams AS t2 ON t2.id = games.team2
 LEFT JOIN teams AS t3 ON t3.id = games.team3
-LEFT JOIN teams AS tw ON tw.id = games.winner
+LEFT JOIN teams AS g0 ON g0.id = games.grade0
+LEFT JOIN teams AS g1 ON g0.id = games.grade1
+LEFT JOIN teams AS g2 ON g0.id = games.grade2
+LEFT JOIN teams AS g3 ON g0.id = games.grade3
 WHERE ranked=true`,
+
   'selectStats': "SELECT * FROM games WHERE ranked=true AND status='played'",
 }

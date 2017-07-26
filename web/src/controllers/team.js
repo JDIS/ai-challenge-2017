@@ -45,3 +45,8 @@ router.post('/session', async function (ctx) {
     await ctx.render('error');
   }
 });
+
+router.get('/disconnect', async function (ctx) {
+  ctx.session = null;
+  ctx.redirect('/login');
+});

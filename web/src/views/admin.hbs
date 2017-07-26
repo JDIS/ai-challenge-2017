@@ -42,7 +42,10 @@
       <th>Équipe 1</th>
       <th>Équipe 2</th>
       <th>Équipe 3</th>
-      <th>Gagnant</th>
+      <th>Grade 0 (Gagnant)</th>
+      <th>Grade 1</th>
+      <th>Grade 2</th>
+      <th>Grade 3</th>
     </tr>
     {{#each ranked}}
       <tr>
@@ -50,7 +53,10 @@
         <td>{{this.t1name}}</td>
         <td>{{this.t2name}}</td>
         <td>{{this.t3name}}</td>
-        <td>{{this.winnername}}</td>
+        <td>{{this.g0name}}</td>
+        <td>{{this.g1name}}</td>
+        <td>{{this.g2name}}</td>
+        <td>{{this.g3name}}</td>
       </tr>
     {{/each}}
   </table>
