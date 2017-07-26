@@ -15,3 +15,10 @@ services:
     command: npm start
     volumes:
       - "./web:/usr/src"
+
+  runner:
+    build: ./scripts/game_runner/
+    command: python game_runner.py
+    volumes:
+      - "./web/public/:/usr/halite-backend/public/"
+      - "./bots/:/usr/halite-backend/bots/"

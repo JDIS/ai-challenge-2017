@@ -4,11 +4,11 @@ project_name = 'halite-backend/'
 
 
 def get_games_directory():
-    return safe_create_directory(get_base_directory() + 'web/public/games/')
+    return safe_create_directory(get_base_directory() + 'public/games/')
 
 
 def get_errors_directory(game_id):
-    return safe_create_directory(get_base_directory() + 'web/public/errors/{}/'.format(game_id))
+    return safe_create_directory(get_base_directory() + 'public/errors/{}/'.format(game_id))
 
 
 def get_halite_directory():

@@ -3,7 +3,7 @@ from sqlalchemy.sql import select, update
 from models.game import Game
 from models.status import Status
 
-Engine = create_engine('postgresql://jdis:compeIA@localhost/jdis')
+Engine = create_engine('postgresql://jdis:compeIA@database/jdis')
 
 
 def get_all_ready_games():
