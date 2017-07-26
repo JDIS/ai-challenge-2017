@@ -190,10 +190,10 @@ namespace hlt
 		{
 			std::vector<Location> neighbors;
 
-			//neighbors.push_back(Location{ static_cast<unsigned short>( (target.x + 1) % width), static_cast<unsigned short>(target.y) });
-			//neighbors.push_back(Location{ static_cast<unsigned short>((target.x - 1) % width), static_cast<unsigned short>(target.y) });
-			//neighbors.push_back(Location{ static_cast<unsigned short>(target.x), static_cast<unsigned short>((target.y - 1) % height) });
-			//neighbors.push_back(Location{ static_cast<unsigned short>(target.x), static_cast<unsigned short>((target.y + 1) % height) });
+			neighbors.push_back(Location{ static_cast<unsigned short>( (target.x + 1) % width), static_cast<unsigned short>(target.y) });
+			neighbors.push_back(Location{ static_cast<unsigned short>((target.x - 1) % width), static_cast<unsigned short>(target.y) });
+			neighbors.push_back(Location{ static_cast<unsigned short>(target.x), static_cast<unsigned short>((target.y - 1) % height) });
+			neighbors.push_back(Location{ static_cast<unsigned short>(target.x), static_cast<unsigned short>((target.y + 1) % height) });
 
 			return neighbors;
 		}
