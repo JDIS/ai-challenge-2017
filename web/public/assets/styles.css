@@ -1,0 +1,53 @@
+body{
+  margin:0 auto;
+}
+
+.nav{
+  padding-top: 1em;
+  min-height: calc(100vh - 1em);
+  overflow: hidden;
+}
+
+.nav a{
+  color:white;
+  font-weight: bold;
+  display: block;
+  font-size: 1.2em;
+  text-decoration: none;
+  margin-bottom: 0.4em;
+}
+
+.nav a:hover{
+  color:#aaa;
+}
+
+.nav__logo{
+  width:100%;
+  margin-bottom:0.5em;
+}
+
+.nav hr{
+  width: 45%;
+  border:0;
+  background-color: #404040;
+  height: 1px;
+  padding:0;
+  margin: 1em auto;
+}
+
+.box {
+  display: flex;
+}
+
+.left {
+  overflow: hidden;
+  flex: 0 0 200px;
+  background: #1a1a1a;
+  text-align: center;
+}
+
+.right {
+  overflow: hidden;
+  padding:2em;
+  flex: 1;
+}

@@ -1,21 +1,23 @@
 {{> start }}
 
-<h1>Inscripion</h1>
+<h1>Inscription</h1>
 <form action="/team" method="post">
   <label>
     Nom d'équipe
+    <br>
     <input type="text" name="name">
   </label>
   <label>
     Nom des membres
+    <br>
     <input type="text" name="members">
   </label>
   <label>
     Mot de passe
+    <br>
     <input type="password" name="password">
   </label>
   <input type="submit" value="Inscription!">
-  /<a href="/login">Connexion</a>
 </form>
 
 {{> end }}
