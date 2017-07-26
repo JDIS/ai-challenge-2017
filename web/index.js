@@ -1,6 +1,10 @@
 'use strict';
 
 require('dotenv').config();
+if (!process.env.SECRET) {
+  throw new Error('You need an .env file. Go read the web readme');
+}
+
 const Koa = require('koa');
 const app = module.exports = new Koa();
 
