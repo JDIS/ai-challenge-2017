@@ -11,8 +11,11 @@ running = True
 
 
 def main():
+    i = 59
     while running:
-        logger.info("Polling new games")
+        i = i + 1
+        if i == 60:
+            logger.info("Polling new games")
         games_ready = database.get_all_ready_games()
         for game in games_ready:
             teams = [game.team0, game.team1, game.team2, game.team3]
@@ -22,7 +25,9 @@ def main():
             rank, replay_id = halite.play_game(bots)
             database.update_played_game(game, rank, replay_id)
 
-        logger.info("Finished processing games")
+        if i == 60:
+            logger.info("Finished processing games")
+            i = 0
         time.sleep(1)
 
 if __name__ == "__main__":

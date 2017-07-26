@@ -1,6 +1,6 @@
 import os
 
-project_name = 'halite-backend/'
+project_name = 'halite-backend'
 
 
 def get_games_directory():
@@ -16,7 +16,7 @@ def get_halite_directory():
 
 
 def get_base_directory():
-    return os.getcwd().split(project_name)[0] + project_name
+    return os.getcwd().split(project_name)[0] + project_name + '/'
 
 
 def safe_create_directory(path):
