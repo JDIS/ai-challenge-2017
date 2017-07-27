@@ -6,3 +6,5 @@ web/public/errors/
 tmp/
 *.pyc
 .DS_Store
+node_modules
+scripts/share
