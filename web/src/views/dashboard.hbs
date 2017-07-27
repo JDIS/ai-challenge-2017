@@ -3,10 +3,10 @@
   <h2>Téléverser votre IA</h2>
   <p>Le fichier téléversé doit avoir une extension <code>.zip</code>.
   <form action="/team/bot" method="post" enctype="multipart/form-data">
-    <label>
-      <input type="file" name="file">
-    </label>
-    <input type="submit" value="Téléverser">
+    <div>
+      <input style="border:1px solid #ccc; padding:1em 1.5em; border-radius:4px; display:inline-block;" type="file" name="file">
+    </div>
+    <input class="button button-primary" type="submit" value="Téléverser">
   </form>
 </div>
 
@@ -14,6 +14,7 @@
 
 <div>
   <h2>Démarrer une nouvelle partie</h2>
+  <p>Vous pouvez démarrer une partie pour tester votre IA contre ces <em>bots</em> programmés par les organisateurs.</p>
   <form action="/game" method="post">
     {{#each bots}}
       <label>
@@ -30,6 +31,7 @@
 
 <div>
   <h2>Rejoindre une partie</h2>
+  <p>Vous pouvez rejoindre une partie en attente pour tester votre IA contre les <em>bots</em> des autres participants.</p>
   <form action="/game/join" method="post">
     <table>
       <tr>
@@ -60,6 +62,7 @@
 
 <div>
   <h2>Historique des parties</h2>
+  <p>Vous trouverez ci-dessous les parties dans lesquelles votre équipe a participé.</p>
   <table>
     <tr>
       <th>Ranked</th>
