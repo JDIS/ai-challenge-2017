@@ -16,6 +16,12 @@ async function addHelpers(ctx, next) {
     ctx.state = {};
   }
 
+  if (ctx.session.isNew) {
+    ctx.state.session = null;
+  } else {
+    ctx.state.session = ctx.session;
+  }
+
   ctx.state.db = db;
 
   await next();

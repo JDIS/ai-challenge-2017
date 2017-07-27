@@ -19,9 +19,12 @@
           <a href="/">Règles</a>
           <a href="/">FAQ</a>
           <hr>
-          <a href="/register">Inscription</a>
-          <a href="/login">Connexion</a>
-          <a href="/team/disconnect">Déconnexion</a>
+          {{#if session}}
+            <a href="/team/disconnect">Déconnexion</a>
+          {{else}}
+            <a href="/register">Inscription</a>
+            <a href="/login">Connexion</a>
+          {{/if}}
         </div>
       </div>
       <div class="right">
