@@ -10,7 +10,7 @@
   </form>
 </div>
 
-<hr>
+<hr class="big">
 
 <div>
   <h2>Démarrer une nouvelle partie</h2>
@@ -21,7 +21,7 @@
   </form>
 </div>
 
-<hr>
+<hr class="big">
 
 <div>
   <h2>Rejoindre une partie</h2>
@@ -52,41 +52,54 @@
   <form>
 </div>
 
-<hr>
+<hr class="big">
 
 <div>
   <h2>Historique des parties</h2>
   <p>Vous trouverez ci-dessous les parties dans lesquelles votre équipe a participé.</p>
-  <table>
-    <tr>
-      <th>Ranked</th>
-      <th>Équipe 0</th>
-      <th>Équipe 1</th>
-      <th>Équipe 2</th>
-      <th>Équipe 3</th>
-      <th>État</th>
-      <th>Grade 0 (Gagnant)</th>
-      <th>Grade 1</th>
-      <th>Grade 2</th>
-      <th>Grade 3</th>
-      <th>Mis à jour le</th>
-    </tr>
+
+  <div class="list">
     {{#each relatedGames}}
-      <tr>
-        <td>{{this.ranked}}</td>
-        <td>{{this.t0name}}</td>
-        <td>{{this.t1name}}</td>
-        <td>{{this.t2name}}</td>
-        <td>{{this.t3name}}</td>
-        <td>{{this.status}}</td>
-        <td>{{this.g0name}}</td>
-        <td>{{this.g1name}}</td>
-        <td>{{this.g2name}}</td>
-        <td>{{this.g3name}}</td>
-        <td>{{this.updated}}</td>
-      </tr>
+      <div class="ranked-{{this.ranked}} list-item">
+
+        <div class="list-content">
+          <div>
+            Type : 
+            {{#if this.ranked}}
+              <strong>Compétition</strong>
+            {{else}}
+              Entraînement
+            {{/if}}
+          </div>
+          <div>{{this.updated}}</div>
+          <div>Round {{this.round}}</div>
+          <hr>
+          {{#if this.g0name}}
+            Classement
+            <div>1. {{this.g0name}}</div>
+            <div>2. {{this.g1name}}</div>
+            <div>3. {{this.g2name}}</div>
+            <div>4. {{this.g3name}}</div>
+          {{else}}
+            Équipes
+            <div>1. {{#if this.t0name}}{{this.t0name}}{{else}}<span class="faded">Pas de <em>bot</em></span>{{/if}}</div>
+            <div>2. {{#if this.t1name}}{{this.t1name}}{{else}}<span class="faded">Pas de <em>bot</em></span>{{/if}}</div>
+            <div>3. {{#if this.t2name}}{{this.t2name}}{{else}}<span class="faded">Pas de <em>bot</em></span>{{/if}}</div>
+            <div>4. {{#if this.t3name}}{{this.t3name}}{{else}}<span class="faded">Pas de <em>bot</em></span>{{/if}}</div>
+          {{/if}}
+          <hr>
+          <div>
+            {{#if this.replay}}
+              <a class="button button-primary" href="/visualizer?path={{this.replay}}">Voir la partie</a>
+            {{else}}
+              <a class="faded button">En attente</a>
+            {{/if}}
+          </div>
+        </div>
+      </div>
     {{/each}}
-  </table>
+  </div>
+
 </div>
 
 {{> end }}

@@ -59,3 +59,64 @@ ol, ul{
   padding-left: 17px;
   list-style-position: outside;
 }
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/*Flex items*/
+.list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.list-item {
+  border:1px solid #eee;
+  display: flex;
+  width: 100%;
+  margin:0 2em 2em 0;
+  border-radius: 0px;
+}
+@media all and (min-width: 40em) {
+  .list-item {
+    width: calc(50% - 2em);
+  }
+}
+@media all and (min-width: 60em) {
+  .list-item {
+    width: calc(33.33% - 4em);
+  }
+}
+.list-content {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  width: 100%;
+}
+.list-content p {
+  flex: 1 0 auto;
+}
+
+.faded{
+  opacity: 0.5;
+}
+
+hr{
+  margin:1em 0;
+  border-width: 0;
+  background-color: #eee;
+  height:1px;
+}
+
+hr.big{
+  margin:2.5em 0;
+  border-width: 0;
+  background-color: #eee;
+  height:1px;
+}
+
+.ranked-true{
+  border-color:#000;
+}
