@@ -1,14 +1,16 @@
 {{> start }}
 <div>
   <h2>Téléverser votre IA</h2>
+  <p>Le fichier téléversé doit avoir une extension <code>.zip</code>.
   <form action="/team/bot" method="post" enctype="multipart/form-data">
     <label>
-      .zip
       <input type="file" name="file">
     </label>
     <input type="submit" value="Téléverser">
   </form>
 </div>
+
+<hr>
 
 <div>
   <h2>Démarrer une nouvelle partie</h2>
@@ -23,6 +25,8 @@
     <input type="submit" value="Démarrer">
   </form>
 </div>
+
+<hr>
 
 <div>
   <h2>Rejoindre une partie</h2>
@@ -52,8 +56,10 @@
   <form>
 </div>
 
+<hr>
+
 <div>
-  <h2>Historique</h2>
+  <h2>Historique des parties</h2>
   <table>
     <tr>
       <th>Ranked</th>

@@ -2,6 +2,10 @@ body{
   margin:0 auto;
 }
 
+a{
+  text-decoration: none;
+}
+
 .nav{
   padding-top: 1em;
   min-height: calc(100vh - 1em);
@@ -13,7 +17,6 @@ body{
   font-weight: bold;
   display: block;
   font-size: 1.2em;
-  text-decoration: none;
   margin-bottom: 0.4em;
 }
 
@@ -50,4 +53,9 @@ body{
   overflow: hidden;
   padding:2em;
   flex: 1;
+}
+
+ol, ul{
+  padding-left: 17px;
+  list-style-position: outside;
 }

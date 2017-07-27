@@ -1,0 +1,68 @@
+{{> start }}
+
+<div style="max-width:50em">
+
+  <h1>Guide de départ</h1>
+  <h2>1. Télécharger un <em>starter package</em></h2>
+  <p>
+    Selon le langage de programmation que vous souhaitez utiliser pour développer votre intelligence artificielle,
+    téléchargez le bon <em>starter package</em> parmi ceux disponibles ci-dessous :
+  </p>
+  <ul>
+    <li><a href="/">Python</a></li>
+    <li><a href="/">C#</a></li>
+    <li><a href="/">Java</a></li>
+    <li><a href="/">C++</a></li>
+  </ul>
+
+  Chacun des <em>starter packages</em> comprend les fichiers suivants :
+  <table>
+    <tr>
+      <th>Fichier</th>
+      <th>Description</th>
+    <tr>
+      <td>
+        MyBot
+      </td>
+      <td>Le fichier que vous modifierez pour développer votre IA. Contient initialement le code d'une IA aléatoire (<em>RandomBot</em>).</td>
+    </tr>
+    <tr>
+      <td>
+        RandomBot
+      </td>
+      <td>Un <em>bot</em> aléatoire que vous pouvez affronter pour tester votre propre IA.</td>
+    </tr>
+    <tr>
+      <td>runGame.sh</td>
+      <td>Script qui permet de lancer une partie sur Linux/macOS.</td>
+    </tr>
+    <tr>
+      <td>runGame.bat</td>
+      <td>Script qui permet de lancer une partie sur Windows.</td>
+    </tr>
+    <tr>
+      <td>halite</td>
+      <td>L’environnement de jeu Halite.io pour Linux/macOS</td>
+    </tr>
+    <tr>
+      <td>Halite.exe</td>
+      <td>L’environnement de jeu Halite.io pour Windows</td>
+    </tr>
+  </table>
+
+  <h2>2. Tester votre IA localement</h2>
+  <p>
+    Pour simuler une partie localement, exécutez tout simplement le fichier <code>./runGame.sh</code> (Linux et macOS) ou <code>runGame.bat</code> (Windows)
+    pour exécuter une partie entre votre IA (<em>MyBot</em>) et <em>RandomBot</em> sur une carte de dimension 30x30.
+    Une fois la partie simulée, un fichier avec une extension <code>.hlt</code> sera généré : ce fichier contient les détails de la partie que vous venez de simuler. Vous pouvez ensuite utiliser ce fichier pour voir la partie graphiquement à l'aide du <a href="/visualizer">visualiseur</a>.
+  </p>
+  
+  <h2>3. Améliorer votre IA</h2>
+  <p>
+    Maintenant que vous savez ce que font les fichiers et comment lancer une partie localement, vous êtes maintenant prêt à créer votre propre intelligence artificielle.
+    Servez-vous du <a href="https://halite.io/basics_intro_halite.php">manuel de référence de la plateforme Halite</a> pour plus d'informations, et n'hésitez pas à poser des questions. Bonne chance!
+  </p>
+
+</div>
+
+{{> end }}
