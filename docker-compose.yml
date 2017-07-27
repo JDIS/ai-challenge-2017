@@ -15,6 +15,7 @@ services:
     command: npm start
     volumes:
       - "./web:/usr/src"
+      - "./bots:/usr/src/bots"
     depends_on:
       - "database"
 

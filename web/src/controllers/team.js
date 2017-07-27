@@ -8,7 +8,7 @@ const { isAuth } = require('../middlewares/auth.js');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '../bots/');
+    cb(null, './bots/');
   },
   filename: function (req, file, cb) {
     cb(null, `${req.session.id}.zip`);
