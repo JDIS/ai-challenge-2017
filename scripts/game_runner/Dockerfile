@@ -13,11 +13,6 @@ RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
 RUN apt-get update
 RUN apt-get install -y nodejs
 
-WORKDIR /usr/halite-backend
-
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-
 WORKDIR /usr/halite-backend/halite
 RUN wget github.com/Sytten/Halite/archive/v1.2.1.zip 
 RUN unzip v1.2.1.zip
@@ -27,6 +22,8 @@ RUN rm v1.2.1.zip
 RUN make
 
 WORKDIR /usr/halite-backend
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 COPY helpers/ ./helpers/
 COPY models/ ./models/
 COPY game_runner.py .
