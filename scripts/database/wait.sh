@@ -1,4 +1,4 @@
 #!/bin/sh
 
-sleep 5
+sleep 10
 alembic upgrade head

@@ -24,6 +24,7 @@ services:
     volumes:
       - "./web:/usr/src"
       - "./bots:/usr/src/bots"
+      - /usr/src/node_modules
     depends_on:
       - migration
 
