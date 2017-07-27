@@ -25,8 +25,8 @@ def main():
                 logger.info("Playing game: {}".format(game.id))
                 rank, replay_id = halite.play_game(bots)
                 database.update_played_game(game, rank, replay_id)
-        except:
-            logger.error("Failed to fetch or run the games")
+        except Exception as e:
+            logger.error("Failed to fetch or run the games: %s", e)
 
         if i == 60:
             logger.info("Finished processing games")

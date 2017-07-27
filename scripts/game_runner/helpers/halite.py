@@ -38,7 +38,7 @@ def parse_game_output(output, players):
             rank[int(position)-1] = players[int(player_id)-1]
 
         elif i == 2*len(players)+3:
-            error_files = lines[i].rstrip(' ').split(' ')
+            error_files = lines[i].rstrip(' ').split()
             if error_files:
                 errors_directory = directories.get_errors_directory(replay_id.split('.')[0])
                 for file_path in error_files:
