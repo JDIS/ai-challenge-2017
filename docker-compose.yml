@@ -8,6 +8,14 @@ services:
       POSTGRES_USER: jdis
       POSTGRES_PASSWORD: compeIA
 
+  migration:
+    build: ./scripts/database/
+    command: "bash ./wait.sh"
+    depends_on:
+      - database
+    volumes:
+      - "./scripts/database/:/usr/halite-backend/"
+
   web:
     ports:
       - "8080:8080"
@@ -17,7 +25,7 @@ services:
       - "./web:/usr/src"
       - "./bots:/usr/src/bots"
     depends_on:
-      - "database"
+      - migration
 
   runner:
     build: ./scripts/game_runner/
@@ -26,4 +34,4 @@ services:
       - "./web/public/:/usr/halite-backend/public/"
       - "./bots/:/usr/halite-backend/bots/"
     depends_on:
-      - "database"
+      - migration

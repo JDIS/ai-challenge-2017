@@ -39,6 +39,7 @@
     "koa-static": "^4.0.1",
     "koa-validate": "^1.0.7",
     "koa-views": "^6.0.2",
+    "nodemon": "^1.11.0",
     "pg-promise": "^6.3.5",
     "xss": "^0.3.3",
     "zlib": "^1.0.5"
@@ -49,7 +50,6 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-node": "^5.1.0",
     "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "nodemon": "^1.11.0"
+    "eslint-plugin-standard": "^3.0.1"
   }
 }
