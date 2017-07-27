@@ -16,3 +16,5 @@ const game = require('./game.js');
 router.use('/game', game.routes(), game.allowedMethods());
 const team = require('./team.js');
 router.use('/team', team.routes(), team.allowedMethods());
+const visualizer = require('./visualizer.js');
+router.use('/visualizer', visualizer.routes(), visualizer.allowedMethods());

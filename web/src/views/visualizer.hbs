@@ -1,0 +1,30 @@
+{{> start }}
+
+<link href="/public/assets/visualizer/bootstrap.min.css" rel="stylesheet">
+<link href="/public/assets/visualizer/general.css" rel="stylesheet">
+
+<div id="messageBox"></div>
+
+<div id="pageContent" class="pageContent text-center">
+    <div id="displayArea" class="col-sm-12 text-center">
+        <h2 style="margin-top: 20px;">Sélectionnez ou déposez un fichier de jeu ici</h2>
+    </div>
+    <div id="fileSelect" class="col-sm-12 text-center">
+        <label for="filePicker" class="button button-primary">Sélectionner un fichier</label>
+        <input type="file" id="filePicker" accept=".hlt" style="display: none;">
+    </div>
+</div>
+
+<script src="/public/assets/visualizer/jquery.min.js"></script>
+<script src="/public/assets/visualizer/lodash.min.js"></script>
+<script src="/public/assets/visualizer/bootstrap.min.js"></script>
+<script src="/public/assets/visualizer/seedrandom.min.js"></script>
+<script src="/public/assets/visualizer/xss.js"></script>
+<script src="/public/assets/visualizer/general.js"></script>
+<script src="/public/assets/visualizer/backend.js"></script>
+<script src="/public/assets/visualizer/pixi.min.js"></script>
+<script src="/public/assets/visualizer/parsereplay.js"></script>
+<script src="/public/assets/visualizer/visualizer.js"></script>
+<script src="/public/assets/visualizer/localVisualizer.js"></script>
+
+{{> end }}
