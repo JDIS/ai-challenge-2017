@@ -3,17 +3,28 @@
 const query = require('./query.js');
 
 async function createGame (db, session, request) {
-  // It's a flatten
-  const bots = [...(request.team || [])];
-  await db.none(query.insertGame, [
-    false,
-    bots.length >= 3 ? 'ready': 'created',
-    bots.length + 1,
-    session.id,
-    bots[0] || null,
-    bots[1] || null,
-    bots[2] || null,
-  ]);
+  console.log(session);
+  if (request.value === 'players') {
+    await db.none(query.insertGame, [
+      false,
+      'created',
+      1,
+      session.id,
+      null,
+      null,
+      null,
+    ]);
+  } else {
+    await db.none(query.insertGame, [
+      false,
+      'ready',
+      4,
+      session.id,
+      '1',
+      '2',
+      '3',
+    ]);
+  }
 }
 module.exports.createGame = createGame;
 

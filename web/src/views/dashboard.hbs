@@ -16,14 +16,8 @@
   <h2>Démarrer une nouvelle partie</h2>
   <p>Vous pouvez démarrer une partie pour tester votre IA contre ces <em>bots</em> programmés par les organisateurs.</p>
   <form action="/game" method="post">
-    {{#each bots}}
-      <label>
-        <input type="checkbox" name="team" value="{{this.id}}">
-        {{this.name}}
-        <br/>
-      </label>
-    {{/each}}
-    <input type="submit" value="Démarrer">
+    <button name="value" class="button-primary" type="submit" value="players">Démarrer une partie contre les autres participants</button>
+    <button name="value" type="submit" value="bots">Démarrer une partie contre le serveur</button>
   </form>
 </div>
 
