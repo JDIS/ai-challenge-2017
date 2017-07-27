@@ -19,11 +19,11 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 WORKDIR /usr/halite-backend/halite
-RUN wget github.com/Sytten/Halite/archive/v1.2.zip 
-RUN unzip v1.2.zip
-RUN cp -a Halite-1.2/environment/. .
-RUN rm -rf Halite-1.2
-RUN rm v1.2.zip
+RUN wget github.com/Sytten/Halite/archive/v1.2.1.zip 
+RUN unzip v1.2.1.zip
+RUN cp -a Halite-1.2.1/environment/. .
+RUN rm -rf Halite-1.2.1
+RUN rm v1.2.1.zip
 RUN make
 
 WORKDIR /usr/halite-backend
