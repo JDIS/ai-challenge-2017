@@ -4,7 +4,7 @@
   <p>Le fichier téléversé doit avoir une extension <code>.zip</code>.
   <form action="/team/bot" method="post" enctype="multipart/form-data">
     <div>
-      <input style="border:1px solid #ccc; padding:1em 1.5em; border-radius:4px; display:inline-block;" type="file" name="file">
+      <input style="border:1px solid #ddd; padding:1em 1.5em; border-radius:4px; display:inline-block;" type="file" name="file">
     </div>
     <input class="button button-primary" type="submit" value="Téléverser">
   </form>
@@ -13,8 +13,8 @@
 <hr class="big">
 
 <div>
-  <h2>Démarrer une nouvelle partie</h2>
-  <p>Vous pouvez démarrer une partie pour tester votre IA contre ces <em>bots</em> programmés par les organisateurs.</p>
+  <h2>Démarrer une partie d'entraînement</h2>
+  <p>Vous pouvez démarrer une nouvelle partie pour tester votre IA, soit contre d'autres participants, soit contre le serveur.</p>
   <form action="/game" method="post">
     <button name="value" class="button-primary" type="submit" value="players">Démarrer une partie contre les autres participants</button>
     <button name="value" type="submit" value="bots">Démarrer une partie contre le serveur</button>
@@ -24,32 +24,36 @@
 <hr class="big">
 
 <div>
-  <h2>Rejoindre une partie</h2>
-  <p>Vous pouvez rejoindre une partie en attente pour tester votre IA contre les <em>bots</em> des autres participants.</p>
-  <form action="/game/join" method="post">
-    <table>
-      <tr>
-        <th>Équipe 0</th>
-        <th>Équipe 1</th>
-        <th>Équipe 2</th>
-        <th>Équipe 3</th>
-        <th></th>
-      </tr>
-      {{#each joinableGames}}
+  <h2>Rejoindre une partie d'entraînement</h2>
+  {{#if joinableGames}}
+    <p>Vous pouvez rejoindre une partie d'entraînement en attente pour tester votre IA contre les <em>bots</em> des autres participants.</p>
+    <form action="/game/join" method="post">
+      <table>
         <tr>
-          <td>{{this.t0name}}</td>
-          <td>{{this.t1name}}</td>
-          <td>{{this.t2name}}</td>
-          <td>{{this.t3name}}</td>
-          <td>
-            <button type="submit" name="join" value="{{this.id}}">
-              Rejoindre
-            </button>
-          </td>
+          <th>Équipe 0</th>
+          <th>Équipe 1</th>
+          <th>Équipe 2</th>
+          <th>Équipe 3</th>
+          <th></th>
         </tr>
-      {{/each}}
-    </table>
-  <form>
+        {{#each joinableGames}}
+          <tr>
+            <td>{{#if this.t0name}}{{this.t0name}}{{else}}<span class="faded">Place libre</span>{{/if}}</td>
+            <td>{{#if this.t1name}}{{this.t1name}}{{else}}<span class="faded">Place libre</span>{{/if}}</td>
+            <td>{{#if this.t2name}}{{this.t2name}}{{else}}<span class="faded">Place libre</span>{{/if}}</td>
+            <td>{{#if this.t3name}}{{this.t3name}}{{else}}<span class="faded">Place libre</span>{{/if}}</td>
+            <td>
+              <button type="submit" name="join" value="{{this.id}}">
+                Rejoindre
+              </button>
+            </td>
+          </tr>
+        {{/each}}
+      </table>
+    <form>
+  {{else}}
+    <p>Il n'y a aucune partie déjà en attente. Créez-en une nouvelle en cliquant sur l'un des boutons de la section ci-dessus!</p>
+  {{/if}}
 </div>
 
 <hr class="big">
@@ -64,15 +68,15 @@
 
         <div class="list-content">
           <div>
-            Type : 
+            Type 
             {{#if this.ranked}}
               <strong>Compétition</strong>
             {{else}}
               Entraînement
             {{/if}}
           </div>
-          <div>{{this.updated}}</div>
           <div>Round {{this.round}}</div>
+          <div>Créée à {{this.updated}}</div>
           <hr>
           {{#if this.g0name}}
             Classement
@@ -82,10 +86,10 @@
             <div>4. {{this.g3name}}</div>
           {{else}}
             Équipes
-            <div>1. {{#if this.t0name}}{{this.t0name}}{{else}}<span class="faded">Pas de <em>bot</em></span>{{/if}}</div>
-            <div>2. {{#if this.t1name}}{{this.t1name}}{{else}}<span class="faded">Pas de <em>bot</em></span>{{/if}}</div>
-            <div>3. {{#if this.t2name}}{{this.t2name}}{{else}}<span class="faded">Pas de <em>bot</em></span>{{/if}}</div>
-            <div>4. {{#if this.t3name}}{{this.t3name}}{{else}}<span class="faded">Pas de <em>bot</em></span>{{/if}}</div>
+            <div>- {{#if this.t0name}}{{this.t0name}}{{else}}<span class="faded">Pas de <em>bot</em></span>{{/if}}</div>
+            <div>- {{#if this.t1name}}{{this.t1name}}{{else}}<span class="faded">Pas de <em>bot</em></span>{{/if}}</div>
+            <div>- {{#if this.t2name}}{{this.t2name}}{{else}}<span class="faded">Pas de <em>bot</em></span>{{/if}}</div>
+            <div>- {{#if this.t3name}}{{this.t3name}}{{else}}<span class="faded">Pas de <em>bot</em></span>{{/if}}</div>
           {{/if}}
           <hr>
           <div>

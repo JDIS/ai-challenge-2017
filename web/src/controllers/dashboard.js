@@ -5,7 +5,7 @@ const Router = require('koa-router');
 const { isAuth } = require('../middlewares/auth.js');
 const Team = require('../models/team.js');
 const Game = require('../models/game.js');
-const moment = require('moment');
+const moment = require('moment-timezone');
 
 const router = module.exports = new Router();
 
@@ -28,7 +28,7 @@ router.get('/', isAuth, async function (ctx) {
       a.replay = encodeURIComponent("/public/games/"+a.replay);
     }
     moment.locale("fr-CA");
-    a.updated = moment(a.updated).format('LLL');
+    a.updated = moment(a.updated).tz('America/New_York').format('HH:mm');
 
     switch(a.status) {
         case "played":
