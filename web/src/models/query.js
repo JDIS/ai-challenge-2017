@@ -45,12 +45,20 @@ RETURNING next_team_count`,
  t0.name AS t0Name,
  t1.name AS t1Name,
  t2.name AS t2Name,
- t3.name AS t3Name
+ t3.name AS t3Name,
+ g0.name AS g0Name,
+ g1.name AS g1Name,
+ g2.name AS g2Name,
+ g3.name AS g3Name
  FROM games
 LEFT JOIN teams AS t0 ON t0.id = games.team0
 LEFT JOIN teams AS t1 ON t1.id = games.team1
 LEFT JOIN teams AS t2 ON t2.id = games.team2
 LEFT JOIN teams AS t3 ON t3.id = games.team3
+LEFT JOIN teams AS g0 ON g0.id = games.grade0
+LEFT JOIN teams AS g1 ON g1.id = games.grade1
+LEFT JOIN teams AS g2 ON g2.id = games.grade2
+LEFT JOIN teams AS g3 ON g3.id = games.grade3
 WHERE (team0 IS NOT null AND team0<>$1)
  OR (team1 IS NOT null AND team1<>$1)
  OR (team2 IS NOT null AND team2<>$1)
@@ -73,9 +81,9 @@ LEFT JOIN teams AS t1 ON t1.id = games.team1
 LEFT JOIN teams AS t2 ON t2.id = games.team2
 LEFT JOIN teams AS t3 ON t3.id = games.team3
 LEFT JOIN teams AS g0 ON g0.id = games.grade0
-LEFT JOIN teams AS g1 ON g0.id = games.grade1
-LEFT JOIN teams AS g2 ON g0.id = games.grade2
-LEFT JOIN teams AS g3 ON g0.id = games.grade3
+LEFT JOIN teams AS g1 ON g1.id = games.grade1
+LEFT JOIN teams AS g2 ON g2.id = games.grade2
+LEFT JOIN teams AS g3 ON g3.id = games.grade3
 WHERE ranked=true`,
 
   'selectStats': "SELECT * FROM games WHERE ranked=true AND status='played'",
