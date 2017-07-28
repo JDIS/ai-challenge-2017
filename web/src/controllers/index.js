@@ -30,3 +30,6 @@ router.use('/guide', guide.routes(), guide.allowedMethods());
 
 const home = require('./home.js');
 router.use('/', home.routes(), home.allowedMethods());
+
+const faq = require('./faq.js');
+router.use('/faq', faq.routes(), faq.allowedMethods());
