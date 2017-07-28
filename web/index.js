@@ -6,11 +6,7 @@ if (!process.env.SECRET) {
 }
 
 const Koa = require('koa');
-const fs = require('fs');
-const path = require('path');
-const http = require('http');
-const https = require('https');
-const app = new Koa();
+const app = module.exports = new Koa();
 
 app.use(require('koa-favicon')((`${__dirname}/resources/favicon.png`)));
 app.use(require('koa-logger')());
@@ -49,47 +45,6 @@ app.use(mount('/public', (ctx, next) =>
     .catch(() => serveStatic('public')(ctx, next))
     .catch(e => console.error(e))));
 
-var options = {
-    key: fs.readFileSync(path.resolve(process.cwd(), 'server.key'), 'utf8').toString(),
-    cert: fs.readFileSync(path.resolve(process.cwd(), 'server.crt'), 'utf8').toString(),
-}
-
-var port = process.env.PORT || 8080;
-var sslport = process.env.SSLPORT || 8443;
-
-var serverCallback = app.callback();
-
-/********* HTTP server (redirect to HTTPS) *********/
-
-var httpServer = http.createServer(function(req, res) {
-  var host = req.headers['host'].split(':')[0];
-  var url = req.url;
-  var redirectUrl = "https://" + host + ":"+sslport + url
-  res.writeHead(301,
-      {"Location": redirectUrl})
-  res.end()
-});
-
-httpServer.listen(port, function(err) {
-    if (!!err) {
-      console.error('HTTP server FAIL: ', err, (err && err.stack));
-    }
-    else {
-      console.log(`HTTP server OK: ${port}`);
-    }
-});
-
-/********* HTTPS server *********/
-
-var httpsServer = https.createServer(options, serverCallback);
-
-httpsServer.listen(sslport, function(err) {
-    if (!!err) {
-      console.error('HTTPS server FAIL: ', err, (err && err.stack));
-    }
-    else {
-      console.log(`HTTPS server OK: ${sslport}`);
-    }
-});
-
-module.exports = app;
+const port = process.env.PORT || 8080;
+app.listen(port);
+console.log(`listening on port ${port}`);
