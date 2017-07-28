@@ -30,14 +30,16 @@
     <form action="/game/join" method="post">
       <table>
         <tr>
-          <th>Équipe 0</th>
+          <th>Créée à</th>
           <th>Équipe 1</th>
           <th>Équipe 2</th>
           <th>Équipe 3</th>
+          <th>Équipe 4</th>
           <th></th>
         </tr>
         {{#each joinableGames}}
           <tr>
+            <td>{{this.created}}
             <td>{{#if this.t0name}}{{this.t0name}}{{else}}<span class="faded">Place libre</span>{{/if}}</td>
             <td>{{#if this.t1name}}{{this.t1name}}{{else}}<span class="faded">Place libre</span>{{/if}}</td>
             <td>{{#if this.t2name}}{{this.t2name}}{{else}}<span class="faded">Place libre</span>{{/if}}</td>
@@ -68,15 +70,14 @@
 
         <div class="list-content">
           <div>
-            Type 
             {{#if this.ranked}}
               <strong>Partie officielle</strong>
+              <div>Round {{this.round}}</div>
             {{else}}
-              Entraînement
+              Partie d'entraînement
             {{/if}}
           </div>
-          <div>Round {{this.round}}</div>
-          <div>Créée à {{this.updated}}</div>
+          <div>Créée à {{this.created}}</div>
           <hr>
           {{#if this.g0name}}
             Classement

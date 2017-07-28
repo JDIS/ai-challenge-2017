@@ -59,10 +59,10 @@ LEFT JOIN teams AS g0 ON g0.id = games.grade0
 LEFT JOIN teams AS g1 ON g1.id = games.grade1
 LEFT JOIN teams AS g2 ON g2.id = games.grade2
 LEFT JOIN teams AS g3 ON g3.id = games.grade3
-WHERE (team0 IS NOT null AND team0<>$1)
- OR (team1 IS NOT null AND team1<>$1)
- OR (team2 IS NOT null AND team2<>$1)
- OR (team3 IS NOT null AND team3<>$1);`,
+WHERE (team0 IS NOT null AND team0=$1)
+ OR (team1 IS NOT null AND team1=$1)
+ OR (team2 IS NOT null AND team2=$1)
+ OR (team3 IS NOT null AND team3=$1);`,
   'getRound': 'SELECT round FROM configs WHERE id=0;',
   'updateRound': 'UPDATE configs SET round=$1 WHERE id=0;',
 

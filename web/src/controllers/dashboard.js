@@ -14,34 +14,46 @@ router.get('/', isAuth, async function (ctx) {
   ctx.state.bots = await Team.selectBots(ctx.state.db);
   ctx.state.joinableGames =
     await Game.selectJoinableGames(ctx.state.db, ctx.session);
+
   ctx.state.relatedGames =
     await Game.selectRelatedGames(ctx.state.db, ctx.session);
   
   // sort games by date (newest first)
-  ctx.state.relatedGames.sort(function(a,b){
-    return b.updated - a.updated;
-  });
+  ctx.state.joinableGames.sort(sortGamesOldestFirst);
+  ctx.state.relatedGames.sort(sortGamesNewestFirst);
 
   // format data for the view
-  ctx.state.relatedGames.forEach(function(a){
-    if(a.replay){
-      a.replay = encodeURIComponent("/public/games/"+a.replay);
-    }
-    moment.locale("fr-CA");
-    a.updated = moment(a.updated).tz('America/New_York').format('HH:mm');
-
-    switch(a.status) {
-        case "played":
-            a.status = "Partie complétée"
-            break;
-        case "created":
-            a.status = "Partie en attente"
-            break;
-        default:
-            break;
-    }
-  });
+  ctx.state.joinableGames.forEach(formatGameData);
+  ctx.state.relatedGames.forEach(formatGameData);
 
 
   await ctx.render('dashboard');
 });
+
+
+function formatGameData(game){
+  if(game.replay){
+    game.replay = encodeURIComponent("/public/games/"+game.replay);
+  }
+  moment.locale("fr-CA");
+  game.created = moment(game.created).tz('America/New_York').format('HH:mm');
+
+  switch(game.status) {
+    case "played":
+        game.status = "Partie complétée"
+        break;
+    case "created":
+        game.status = "Partie en attente"
+        break;
+    default:
+        break;
+  }
+}
+
+function sortGamesOldestFirst(gameA,gameB){
+  return gameA.created - gameB.created;
+}
+
+function sortGamesNewestFirst(gameA,gameB){
+  return gameB.created - gameA.created;
+}
