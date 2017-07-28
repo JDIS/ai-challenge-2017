@@ -1,7 +1,10 @@
 import os
+import logging
 import helpers.directories as directories
 import shutil
 from subprocess import check_output
+
+logger = logging.getLogger(__name__)
 
 
 def play_game(bots):
@@ -17,6 +20,7 @@ def play_game(bots):
         players.append(botId)
         command.append(launcher)
 
+    logger.info("Running command: {}".format(str(command)))
     output = check_output(command)
     rank, replay_id = parse_game_output(output, players)
 
