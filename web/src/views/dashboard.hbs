@@ -4,7 +4,7 @@
   <p>Le fichier téléversé doit avoir une extension <code>.zip</code>.
   <form action="/team/bot" method="post" enctype="multipart/form-data">
     <div>
-      <input style="border:1px solid #ddd; padding:1em 1.5em; border-radius:4px; display:inline-block;" type="file" name="file">
+      <input style="border:1px solid #ddd; padding:1em 1.5em; border-radius:4px; display:inline-block;" accept=".zip" type="file" name="file">
     </div>
     <input class="button button-primary" type="submit" value="Téléverser">
   </form>
@@ -70,7 +70,7 @@
           <div>
             Type 
             {{#if this.ranked}}
-              <strong>Compétition</strong>
+              <strong>Partie officielle</strong>
             {{else}}
               Entraînement
             {{/if}}
