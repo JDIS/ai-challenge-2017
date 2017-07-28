@@ -38,6 +38,9 @@ def _unzip_bot(bot):
     except:
         logger.error('Unzipping fail for team bot: {}'.format(bot))
 
+    if os.path.exists(bot_path + '/MyBot'):
+        bot_path = bot_path + '/MyBot'
+
     return bot_path
 
 

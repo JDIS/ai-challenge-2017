@@ -10,7 +10,7 @@ def play_game(bots):
     halite_executable = directories.get_halite_directory() + 'halite'
 
     players = []
-    command = [halite_executable, '-q',  '-i ' + games_directory, '-e ' + tmp_directory, '-d 20 20']
+    command = [halite_executable, '-q',  '-i ' + games_directory, '-e ' + tmp_directory, '-d 30 30']
 
     for botId, data in bots.items():
         launcher = data['language'].value['launcher'].format(data['path'])
