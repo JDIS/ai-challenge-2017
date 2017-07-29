@@ -36,30 +36,45 @@
 
 <div>
   <h2>Ranked</h2>
-  <table>
-    <tr>
-      <th>Équipe 0</th>
-      <th>Équipe 1</th>
-      <th>Équipe 2</th>
-      <th>Équipe 3</th>
-      <th>Grade 0 (Gagnant)</th>
-      <th>Grade 1</th>
-      <th>Grade 2</th>
-      <th>Grade 3</th>
-    </tr>
+  <div class="list">
     {{#each ranked}}
-      <tr>
-        <td>{{this.t0name}}</td>
-        <td>{{this.t1name}}</td>
-        <td>{{this.t2name}}</td>
-        <td>{{this.t3name}}</td>
-        <td>{{this.g0name}}</td>
-        <td>{{this.g1name}}</td>
-        <td>{{this.g2name}}</td>
-        <td>{{this.g3name}}</td>
-      </tr>
+      <div class="ranked-{{this.ranked}} list-item">
+
+        <div class="list-content">
+          <div>
+            {{#if this.ranked}}
+              <strong>Partie officielle (round {{this.round}})</strong>
+            {{else}}
+              Partie d'entraînement
+            {{/if}}
+          </div>
+          <div>Créée à {{this.created}}</div>
+          <hr>
+          {{#if this.g0name}}
+            Classement
+            <div>1. {{this.g0name}}</div>
+            <div>2. {{this.g1name}}</div>
+            <div>3. {{this.g2name}}</div>
+            <div>4. {{this.g3name}}</div>
+          {{else}}
+            Équipes
+            <div>- {{#if this.t0name}}{{this.t0name}}{{else}}<span class="faded">Pas de <em>bot</em></span>{{/if}}</div>
+            <div>- {{#if this.t1name}}{{this.t1name}}{{else}}<span class="faded">Pas de <em>bot</em></span>{{/if}}</div>
+            <div>- {{#if this.t2name}}{{this.t2name}}{{else}}<span class="faded">Pas de <em>bot</em></span>{{/if}}</div>
+            <div>- {{#if this.t3name}}{{this.t3name}}{{else}}<span class="faded">Pas de <em>bot</em></span>{{/if}}</div>
+          {{/if}}
+          <hr>
+          <div>
+            {{#if this.replay}}
+              <a class="button button-primary" href="/visualizer?path={{this.replay}}">Voir la partie</a>
+            {{else}}
+              <a class="faded button">En attente</a>
+            {{/if}}
+          </div>
+        </div>
+      </div>
     {{/each}}
-  </table>
+  </div>
 </div>
 
 {{> end }}
