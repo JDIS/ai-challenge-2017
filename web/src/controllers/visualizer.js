@@ -5,5 +5,10 @@ const Router = require('koa-router');
 const router = module.exports = new Router();
 
 router.get('/', async function (ctx) {
-  await ctx.render('visualizer');
+  if(ctx.session.admin){
+    await ctx.render('visualizer');
+  }
+  else{
+    await ctx.render('finale');
+  }
 });

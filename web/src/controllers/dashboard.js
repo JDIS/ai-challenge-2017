@@ -26,8 +26,8 @@ router.get('/', isAuth, async function (ctx) {
   ctx.state.joinableGames.forEach(formatGameData);
   ctx.state.relatedGames.forEach(formatGameData);
 
-
-  await ctx.render('dashboard');
+  //await ctx.render('dashboard');
+  await ctx.render('finale');
 });
 
 

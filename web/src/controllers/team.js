@@ -18,9 +18,12 @@ const upload = multer({ storage: storage })
 const router = module.exports = new Router();
 
 router.post('/bot', isAuth, async function (ctx) {
+  /*
   ctx.req.session = ctx.session;
   await upload.single('file')(ctx);
   Team.sessionRedirect(ctx);
+  */
+  ctx.redirect('/visualizer')
 });
 
 router.post('/', async function (ctx) {
