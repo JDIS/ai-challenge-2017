@@ -4,19 +4,10 @@ import math
 from team import Team
 
 bot = Team()
-
 bot.name = "A bot"
 bot.bot = True
 
 game_for_player = 3
-
-
-def row2dict(row):
-    d = {}
-    for column in row.__table__.columns:
-        d[column.name] = str(getattr(row, column.name))
-
-    return d
 
 
 def main():
@@ -31,7 +22,7 @@ def main():
     # Create the pools
     number_teams = len(teams)
     number_games = int(math.ceil((number_teams * game_for_player) / 4))
-    games_with_bot = int(math.modf(number_teams * game_for_player / 4.0)[0] * 4)
+    games_with_bot = int(math.modf(number_teams * game_for_player / 4)[0] * 4)
     for i in range(number_games):
         pool = []
         while len(pool) != 4:
@@ -42,7 +33,7 @@ def main():
             else:
                 selected_player = teams[random.randint(0, number_teams - 1)]
 
-            # Check if the player has already played all games
+            # Check if the player has already played a game
             if not selected_player.bot:
                 has_already_played = False
                 for team, number_game_played in game_played.items():
