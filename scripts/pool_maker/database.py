@@ -1,8 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.sql import select, update
 from team import Team
+import os
 
-Engine = create_engine('postgresql://jdis:compeIA@127.0.0.1/jdis')
+Engine = create_engine(f"postgresql://{os.environ['POSTGRES_USER']}:{os.environ['POSTGRES_PASSWORD']}@database/{os.environ['POSTGRES_USER']}")
 
 
 def get_all_teams():

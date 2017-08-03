@@ -4,13 +4,14 @@ services:
     ports:
      - "5432:5432"
     image: postgres
-    environment:
-      POSTGRES_USER: jdis
-      POSTGRES_PASSWORD: compeIA
+    env_file:
+      - .env
 
   migration:
     build: ./scripts/database/
     command: "bash ./wait.sh"
+    env_file:
+      - .env
     depends_on:
       - database
     volumes:
@@ -21,6 +22,8 @@ services:
       - "8080:8080"
     build: ./web/
     command: npm start
+    env_file:
+      - .env
     volumes:
       - "./web:/usr/src"
       - "./bots:/usr/src/bots"
@@ -31,6 +34,8 @@ services:
   runner:
     build: ./scripts/game_runner/
     command: python game_runner.py
+    env_file:
+      - .env
     volumes:
       - "./web/public/:/usr/halite-backend/public/"
       - "./bots/:/usr/halite-backend/bots/"

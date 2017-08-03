@@ -1,8 +1,7 @@
 'use strict';
 
-require('dotenv').config();
-if (!process.env.SECRET) {
-  throw new Error('You need an .env file. Go read the web readme');
+if (!process.env.WEB_SECRET) {
+  throw new Error('You need an .env file. Go read the readme');
 }
 
 const Koa = require('koa');
@@ -15,7 +14,7 @@ app.use(require('koa-compress')({
   flush: require('zlib').Z_SYNC_FLUSH
 }));
 
-app.keys = [process.env.SECRET];
+app.keys = [process.env.WEB_SECRET];
 app.use(require('koa-session')(app));
 app.use(require('koa-bodyparser')());
 

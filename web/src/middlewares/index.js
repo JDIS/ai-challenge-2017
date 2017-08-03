@@ -4,9 +4,9 @@ const pgp = require('pg-promise')({});
 const cn = {
   host: 'database',
   port: 5432,
-  database: 'jdis',
-  user: 'jdis',
-  password: 'compeIA'
+  database: process.env.POSTGRES_USER,
+  user: process.env.POSTGRES_USER,
+  password: process.env.POSTGRES_PASSWORD,
 };
 
 const db = pgp(cn);

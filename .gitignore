@@ -8,3 +8,6 @@ tmp/
 .DS_Store
 node_modules
 scripts/share
+
+# dotenv environment variables file
+.env
