@@ -44,6 +44,5 @@ app.use(mount('/public', (ctx, next) =>
     .catch(() => serveStatic('public')(ctx, next))
     .catch(e => console.error(e))));
 
-const port = process.env.PORT || 8080;
-app.listen(port);
-console.log(`listening on port ${port}`);
+app.listen(8080);
+console.log('listening on port 8080');
