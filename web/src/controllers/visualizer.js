@@ -2,13 +2,10 @@
 
 const Router = require('koa-router');
 
+const { isNotOver } = require('../middlewares/auth.js');
+
 const router = module.exports = new Router();
 
-router.get('/', async function (ctx) {
-  if(ctx.session.admin){
-    await ctx.render('visualizer');
-  }
-  else{
-    await ctx.render('finale');
-  }
+router.get('/', isNotOver, async function (ctx) {
+  await ctx.render('visualizer');
 });

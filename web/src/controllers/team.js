@@ -4,7 +4,7 @@ const Router = require('koa-router');
 const multer = require('koa-multer');
 
 const Team = require('../models/team.js');
-const { isAuth } = require('../middlewares/auth.js');
+const { isAuth, isNotOver } = require('../middlewares/auth.js');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -17,13 +17,10 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 const router = module.exports = new Router();
 
-router.post('/bot', isAuth, async function (ctx) {
-  /*
+router.post('/bot', isAuth, isNotOver, async function (ctx) {
   ctx.req.session = ctx.session;
   await upload.single('file')(ctx);
   Team.sessionRedirect(ctx);
-  */
-  ctx.redirect('/visualizer')
 });
 
 router.post('/', async function (ctx) {

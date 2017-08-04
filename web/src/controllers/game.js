@@ -2,7 +2,7 @@
 
 const Router = require('koa-router');
 
-const { isAuth, isAdmin } = require('../middlewares/auth.js');
+const { isAuth, isAdmin, isNotOver } = require('../middlewares/auth.js');
 const Team = require('../models/team.js');
 const Game = require('../models/game.js');
 
@@ -33,14 +33,11 @@ router.post('/join', isAuth, async function (ctx) {
   }
 });
 
-router.get('/', async function (ctx) {
-  //await ctx.render('leaderboard');
-  await ctx.render('finale');
+router.get('/', isNotOver, async function (ctx) {
+  await ctx.render('leaderboard');
 });
 
-router.get('/stats.json', async function (ctx, next) {
-  /*
+router.get('/stats.json', isNotOver, async function (ctx, next) {
   ctx.response.body = await Game.selectStats(ctx.state.db);
   await next();
-  */
 });

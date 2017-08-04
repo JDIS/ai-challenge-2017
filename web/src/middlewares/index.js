@@ -9,6 +9,8 @@ const cn = {
   password: process.env.POSTGRES_PASSWORD,
 };
 
+const Admin = require('../models/admin.js');
+
 const db = pgp(cn);
 
 async function addHelpers(ctx, next) {
@@ -39,10 +41,16 @@ async function manageConnection(ctx, next) {
 }
 module.exports.manageConnection = manageConnection;
 
+module.exports.manageConfigs = async (ctx, next) => {
+  ctx.state.configs = await Admin.getConfigs(ctx.state.db);
+
+  await next();
+};
+
 async function manage401 (ctx, next) {
   try {
     await next();
-  } catch(error) {
+  } catch (error) {
     if (error.status !== 401) {
       throw error;
     }

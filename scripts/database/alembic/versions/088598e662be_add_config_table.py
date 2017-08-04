@@ -19,6 +19,7 @@ depends_on = None
 configs = sa.table('configs',
                    sa.Column('id', sa.Integer, primary_key=True),
                    sa.Column('round', sa.Integer(), server_default='0'),
+                   sa.Column('submitions_over', sa.Boolean(), server_default='false'),
 )
 
 
@@ -26,11 +27,12 @@ def upgrade():
     op.create_table('configs',
                     sa.Column('id', sa.Integer, primary_key=True),
                     sa.Column('round', sa.Integer(), server_default='0'),
+                    sa.Column('submitions_over', sa.Boolean(), server_default='false'),
                     )
 
     op.bulk_insert(configs,
                    [
-                       {'id': '0', 'round': '0'}
+                       {'id': '0', 'round': '0', 'submitions_over': 'false'}
                    ]
                    )
 

@@ -2,8 +2,8 @@
 
 const query = require('./query.js');
 
-module.exports.getRound = async db => {
-  return (await db.one(query.getRound)).round;
+module.exports.getConfigs = async db => {
+  return db.one(query.getConfigs);
 }
 
 module.exports.updateRound = async (db, request) => {

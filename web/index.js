@@ -31,6 +31,7 @@ app.use(require('koa-views')(`${__dirname}/src/views`, {
 app.use(require('./src/middlewares').manage401);
 app.use(require('./src/middlewares').addHelpers);
 app.use(require('./src/middlewares').manageConnection);
+app.use(require('./src/middlewares').manageConfigs);
 
 const controllers = require('./src/controllers');
 app.use(controllers.routes())

@@ -11,7 +11,6 @@ const moment = require('moment-timezone');
 const router = module.exports = new Router();
 
 router.get('/', isAdmin, async function (ctx) {
-  ctx.state.round = await Admin.getRound(ctx.state.db);
   ctx.state.teams = await Team.selectTeams(ctx.state.db);
   ctx.state.ranked = await Game.selectRankeds(ctx.state.db);
 
