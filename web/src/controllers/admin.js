@@ -20,7 +20,6 @@ router.get('/', isAdmin, async function (ctx) {
   // format data for the view
   ctx.state.ranked.forEach(formatGameData);
 
-
   await ctx.render('admin');
 });
 
@@ -34,31 +33,35 @@ router.post('/round', isAdmin, async function (ctx) {
   }
 });
 
-
-function formatGameData(game){
-  if(game.replay){
-    game.replay = encodeURIComponent("/public/games/"+game.replay);
+router.post('/is-over', isAdmin, async function (ctx) {
+  try {
+    await Admin.updateSubmitionsOver(ctx.state.db, ctx.request.body);
+    ctx.redirect('/admin');
+  } catch (error) {
+    ctx.state = { error };
+    await ctx.render('error');
   }
-  moment.locale("fr-CA");
-  console.log(game.created)
+});
+
+function formatGameData (game) {
+  if (game.replay) {
+    game.replay = encodeURIComponent(`/public/games/${game.replay}`);
+  }
+  moment.locale('fr-CA');
   game.created = moment(game.created).tz('America/New_York').format('HH:mm');
 
-  switch(game.status) {
-    case "played":
-        game.status = "Partie complétée"
-        break;
-    case "created":
-        game.status = "Partie en attente"
-        break;
+  switch (game.status) {
+    case 'played':
+      game.status = 'Partie complétée"'
+      break;
+    case 'created':
+      game.status = 'Partie en attente"'
+      break;
     default:
-        break;
+      break;
   }
 }
 
-function sortGamesOldestFirst(gameA,gameB){
-  return gameA.created - gameB.created;
-}
-
-function sortGamesNewestFirst(gameA,gameB){
+function sortGamesNewestFirst (gameA, gameB) {
   return gameB.created - gameA.created;
 }

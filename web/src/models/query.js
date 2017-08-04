@@ -65,6 +65,7 @@ WHERE (team0 IS NOT null AND team0=$1)
  OR (team3 IS NOT null AND team3=$1);`,
   'getConfigs': 'SELECT * FROM configs WHERE id=0;',
   'updateRound': 'UPDATE configs SET round=$1 WHERE id=0;',
+  'updateSubmitionsOver': 'UPDATE configs SET submitions_over=$1 WHERE id=0;',
 
   'selectRankeds': `SELECT games.*,
  t0.name AS t0Name,

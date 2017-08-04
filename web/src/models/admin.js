@@ -12,3 +12,11 @@ module.exports.updateRound = async (db, request) => {
   }
   return db.none(query.updateRound, [request.round]);
 }
+
+module.exports.updateSubmitionsOver = async (db, request) => {
+  if (request.isOver == null ||
+    (request.isOver !== 'TRUE' && request.isOver !== 'FALSE')) {
+    throw new Error('Missing isOver');
+  }
+  return db.none(query.updateSubmitionsOver, [request.isOver === 'TRUE']);
+}

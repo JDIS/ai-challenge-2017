@@ -12,6 +12,23 @@
 </div>
 
 <div>
+  <h2>Désactiver la platforme</h2>
+  <form action="/admin/is-over" method="post">
+    <label>
+      {{#if configs.submitions_over}}
+        <button style="background-color:#5cb85c; border-color:#5cb85c; color:white;" type="submit" name="isOver" value="FALSE">
+          Activer
+        </button>
+      {{else}}
+        <button style="background-color:#d9534f; border-color:#d9534f; color:white;" type="submit" name="isOver" value="TRUE">
+          Désactiver
+        </button>
+      {{/if}}
+    </label>
+  </form>
+</div>
+
+<div>
   <h2>Lancer un match compétitif</h2>
   <form action="/game/ranked" method="post">
     <table>
