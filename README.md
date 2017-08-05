@@ -34,10 +34,12 @@ that the DB doesn't contain certain tables. Don't panic. Just wait and 10 second
 - Round 0 doesn't produce any point.
 - Don't hesitate to rebrand the site. The branding was made for our CS student
 association.
+- There's an issue with the Javascript starter pack. The A* isn't working properly.
 
 ## I want to contribute, what should I do?
 - You could translate the frontend to english.
 - Run every games in its container without access to the network and everything else.
+- Fix Javascript's A*.
 - Add support for other languages.
 
 ### Update tables
