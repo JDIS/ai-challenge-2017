@@ -14,7 +14,7 @@ This will prevent them from knowing the final results before the match is presen
 - There's a leaderboard for ranked matches.
 - Each round produces more points.
 - There are already 3 bots setup. The third one is better than random.
-- There are 4 starter packs. They contain scripts to test locally on linux, mac and windows. They also have a simple A*.
+- There are 4 starter packs (Python, Javascript, C++ and C#). They contain scripts to test locally on linux, mac and windows. They also have a simple A*.
 - There's a starter guide to help new players.
 - The database migrations are automatically ran.
 
@@ -28,8 +28,8 @@ containers. Run `docker-compose up`. The first time, the runner will complain
 that the DB doesn't contain certain tables. Don't panic. Just wait and 10 seconds later the migrations will start and everything will be fixed.
 
 ## Notes
-- Don't put this on the Internet. Every games are in the same container. Players can easy screwup the system.
-- The code is in english but the presentation is in french.
+- **Don't put this on the Internet.** All games are ran in the same container. Players can easy screwup the system.
+- The code is in english, but the presentation is in french.
 - Be careful if you open the DB port on your firewall.
 - Round 0 doesn't produce any point.
 - Don't hesitate to rebrand the site. The branding was made for our CS student
@@ -38,6 +38,7 @@ association.
 ## I want to contribute, what should I do?
 - You could translate the frontend to english.
 - Run every games in its container without access to the network and everything else.
+- Add support for other languages.
 
 ### Update tables
 The database tables are maintained by `alembic` which can be installed using
