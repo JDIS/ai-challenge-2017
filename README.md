@@ -31,7 +31,7 @@ Here's a screenshot of the game visualizer (in French):
 ## How to Install
 
 1. [Install Docker and Docker Compose](https://docs.docker.com/compose/install/).
-2. Copy the `env.example` file to `.env`, and edit this `.env` file to setup all the variables as needed. The SECRET variable can be generated with `openssl rand -hex 48`. These variables will be shared between the Docker containers
+2. Copy the `env.example` file to `.env`, and edit this `.env` file to setup all the variables as needed. The `WEB_SECRET` variable can be generated with `openssl rand -hex 48`. These variables will be shared between the Docker containers
 3. Run `docker-compose up`. The first time you do so, the `runner` container will complain that the database doesn't contain certain tables. Don't panic: just wait a few seconds and the automatic database migrations will start, after which everything should run fine.
 
 ## Notes
@@ -43,10 +43,10 @@ Here's a screenshot of the game visualizer (in French):
 - There's an issue with the JavaScript starter package: the A\* algorithm isn't working properly.
 
 ## I want to contribute, what can I do?
-[ ] Translate the front-end to English
-[ ] Make every single match run in its own container, without access to the network or anything else
-[ ] Fix the A\* algorithm of the JavaScript starter package
-[ ] Add support for other languages
+- [ ] Translate the front-end to English
+- [ ] Make every single match run in its own container, without access to the network or anything else
+- [ ] Fix the A\* algorithm of the JavaScript starter package
+- [ ] Add support for other languages
 
 ### Database Migrations
 The database tables are maintained by `alembic`, which can be installed using `virtualenv`. To do so, navigate to `/scripts/database` and run the following: 
